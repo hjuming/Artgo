@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artgo Cafe 雅鴿書院 - 日式料理 極上總督盛宴</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f3f1;
+            color: #3e2723;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .hero-block {
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-block {
+                padding: 3.5rem 1.5rem;
+            }
+        }
+
+        .category-image, .alacarte-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .alacarte-item-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .alacarte-item-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .alacarte-item-card .item-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .alacarte-item-card .item-price {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alacarte-item-card .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alacarte-item-card .quantity-controls button {
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.25rem 0.75rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .alacarte-item-card .quantity-controls input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 0.25rem;
+        }
+
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-amber-800">Artgo Cafe 雅鴿書院</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="text-gray-600 hover:text-amber-800">菜單</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-amber-800">預約</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-amber-800">聯絡我們</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+        <div id="start-view" class="view-section active">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-bold text-amber-800 mb-4">歡迎來到雅鴿書院</h2>
+                <p class="text-lg text-gray-700">請選擇用餐人數以開始點餐</p>
+            </div>
+
+            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+                <label for="diner-count" class="block text-gray-700 text-sm font-bold mb-2">用餐人數:</label>
+                <input type="number" id="diner-count" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="2" min="1" max="6">
+                <button id="start-order-btn" class="mt-4 bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">開始點餐</button>
+            </div>
+        </div>
+
+        <div id="set-selection-view" class="view-section">
+            <h2 class="text-3xl font-bold text-amber-800 mb-6 text-center">選擇套餐</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card set-choice-btn" data-set-type="single">
+                    <img src="https://i.imgur.com/8Y8Y8Y8.jpg" alt="單人日式套餐" class="hero-image">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">單人日式套餐</h3>
+                        <p class="text-gray-700 mb-4">精選日式料理，一人獨享的美味。</p>
+                        <button class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded w-full">選擇</button>
+                    </div>
+                </div>
+                <div class="card set-choice-btn" data-set-type="double">
+                    <img src="https://i.imgur.com/9Z9Z9Z9.jpg" alt="雙人總督套餐" class="hero-image">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">雙人總督套餐</h3>
+                        <p class="text-gray-700 mb-4">豐盛雙人份，與摯愛共享。</p>
+                        <button class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded w-full">選擇</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ordering-view" class="view-section">
+            <h2 id="ordering-person-title" class="text-3xl font-bold text-amber-800 mb-6 text-center">為第 1 位顧客點餐</h2>
+            <div id="ordering-hero-image-container" class="card mb-6">
+                <!-- Hero image and block will be injected here -->
+            </div>
+
+            <form id="order-form" class="bg-white p-6 rounded-lg shadow-md">
+                <div id="set-options-container">
+                    <!-- Set specific options will be injected here -->
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">單點加購</h3>
+                    <div id="alacarte-section" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Alacarte items will be injected here -->
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8">
+                    <button type="button" class="back-to-select bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">返回選擇套餐</button>
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">確認點餐</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="summary-view" class="view-section">
+            <h2 class="text-3xl font-bold text-amber-800 mb-6 text-center">訂單摘要</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">已點餐項目</h3>
+                    <div class="flex items-center">
+                        <label for="summary-diner-count" class="text-gray-700 text-sm font-bold mr-2">總用餐人數:</label>
+                        <input type="number" id="summary-diner-count" class="shadow appearance-none border rounded py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-20" min="1" max="6">
+                    </div>
+                </div>
+                <div id="order-details" class="space-y-4">
+                    <!-- Order details will be injected here -->
+                </div>
+                <div class="text-right mt-6 pt-4 border-t border-gray-200">
+                    <p class="text-xl font-bold text-gray-800">總計: <span id="order-total">$0</span></p>
+                </div>
+            </div>
+            <div class="flex justify-between">
+                <button id="add-more-diners-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">繼續為下一位點餐</button>
+                <button id="submit-final-order-btn" class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded">提交最終訂單</button>
+            </div>
+        </div>
+
+        <div id="final-order-view" class="view-section">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-bold text-amber-800 mb-4">感謝您的訂購！</h2>
+                <p class="text-lg text-gray-700">您的訂單已成功送出。</p>
+                <div id="order-number-display" class="mt-4 text-xl font-semibold text-gray-800"></div>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">您的訂單詳情</h3>
+                <div id="final-order-details" class="space-y-4 mb-6">
+                    <!-- Final order details will be injected here -->
+                </div>
+                <div class="text-right pt-4 border-t border-gray-200">
+                    <p class="text-xl font-bold text-gray-800">總計: <span id="final-order-total">$0</span></p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button id="restart-order-btn" class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded">重新開始點餐</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Artgo Cafe 雅鴿書院. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // View management
+        function showView(viewId) {
+            document.querySelectorAll(".view-section").forEach(view => {
+                view.classList.remove("active");
+            });
+            document.getElementById(viewId).classList.add("active");
+        }
+
+        // Global state
+        let totalDiners = 2;
+        let dinersOrdered = 0;
+        let allOrders = []; // Stores objects like { id: 1, type: 'single', set: 'A', alacarte: { 'item1': 2 } }
+        let editingOrderId = null;
+
+        // DOM elements
+        const dinerCountInput = document.getElementById("diner-count");
+        const summaryDinerCountInput = document.getElementById("summary-diner-count");
+        const orderForm = document.getElementById("order-form");
+        const setOptionsContainer = document.getElementById("set-options-container");
+        const alacarteSection = document.getElementById("alacarte-section");
+
+        // Data for sets and alacarte items
+        const singleSets = {
+            A: { name: "日式經典套餐", price: 350, description: "主餐、沙拉、湯、甜點、飲料", options: { main: ["照燒雞腿", "鹽烤鯖魚"], drink: ["紅茶", "綠茶", "咖啡"] } },
+            B: { name: "豪華海鮮套餐", price: 480, description: "主餐、生魚片、沙拉、湯、甜點、飲料", options: { main: ["豪華海鮮丼", "烤鰻魚飯"], drink: ["紅茶", "綠茶", "咖啡", "果汁"] } }
+        };
+
+        const doubleSets = {
+            C: { name: "總督雙人套餐", price: 880, description: "兩份主餐、兩份沙拉、兩份湯、兩份甜點、兩份飲料", options: { main1: ["照燒雞腿", "鹽烤鯖魚", "豪華海鮮丼"], main2: ["照燒雞腿", "鹽烤鯖魚", "烤鰻魚飯"], drink: ["紅茶", "綠茶", "咖啡", "果汁", "可樂"] } }
+        };
+
+        const alacarteItems = [
+            { id: "tempura", name: "炸蝦天婦羅", price: 120, image: "https://i.imgur.com/example1.jpg" },
+            { id: "sushi", name: "綜合壽司", price: 180, image: "https://i.imgur.com/example2.jpg" },
+            { id: "sashimi", name: "生魚片拼盤", price: 250, image: "https://i.imgur.com/example3.jpg" },
+            { id: "miso", name: "味噌湯", price: 60, image: "https://i.imgur.com/example4.jpg" }
+        ];
+
+        function generateOptionsHtml(id, label, options, selectedValue = '') {
+            return `
+                <div class="mb-4">
+                    <label for="${id}" class="block text-gray-700 text-sm font-bold mb-2">${label}:</label>
+                    <select id="${id}" name="${id}" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        ${options.map(option => `<option value="${option}" ${selectedValue === option ? 'selected' : ''}>${option}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+        }
+
+        function populateSingleSetForm(order = {}) {
+            setOptionsContainer.innerHTML = `
+                <div class="mb-4">
+                    <label for="single-set-type" class="block text-gray-700 text-sm font-bold mb-2">選擇套餐類型:</label>
+                    <select id="single-set-type" name="set-type" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        ${Object.keys(singleSets).map(key => `<option value="${key}" ${order.set === key ? 'selected' : ''}>${singleSets[key].name} ($${singleSets[key].price})</option>`).join('')}
+                    </select>
+                </div>
+                <div id="single-set-details">
+                    <!-- Dynamic options based on set type -->
+                </div>
+            `;
+            document.getElementById('single-set-type').addEventListener('change', updateSingleSetOptions);
+            updateSingleSetOptions(order);
+            populateAlacarte(order.alacarte || {});
+        }
+
+        function updateSingleSetOptions(orderOrEvent) {
+            const order = orderOrEvent.target ? {} : orderOrEvent; // Check if it's an event or an order object
+            const selectedSetKey = orderOrEvent.target ? orderOrEvent.target.value : (order.set || Object.keys(singleSets)[0]);
+            const selectedSet = singleSets[selectedSetKey];
+            let optionsHtml = `
+                <p class="text-gray-600 mb-4">${selectedSet.description}</p>
+                ${generateOptionsHtml('single-main-option', '主餐', selectedSet.options.main, order.mainOption)}
+                ${generateOptionsHtml('single-drink-option', '飲料', selectedSet.options.drink, order.drinkOption)}
+            `;
+            document.getElementById('single-set-details').innerHTML = optionsHtml;
+        }
+
+        function populateDoubleSetForm(order = {}) {
+            setOptionsContainer.innerHTML = `
+                <div class="mb-4">
+                    <label for="double-set-type" class="block text-gray-700 text-sm font-bold mb-2">選擇套餐類型:</label>
+                    <select id="double-set-type" name="set-type" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        ${Object.keys(doubleSets).map(key => `<option value="${key}" ${order.set === key ? 'selected' : ''}>${doubleSets[key].name} ($${doubleSets[key].price})</option>`).join('')}
+                    </select>
+                </div>
+                <div id="double-set-details">
+                    <!-- Dynamic options based on set type -->
+                </div>
+            `;
+            document.getElementById('double-set-type').addEventListener('change', updateDoubleSetOptions);
+            updateDoubleSetOptions(order);
+            populateAlacarte(order.alacarte || {});
+        }
+
+        function updateDoubleSetOptions(orderOrEvent) {
+            const order = orderOrEvent.target ? {} : orderOrEvent; // Check if it's an event or an order object
+            const selectedSetKey = orderOrEvent.target ? orderOrEvent.target.value : (order.set || Object.keys(doubleSets)[0]);
+            const selectedSet = doubleSets[selectedSetKey];
+            let optionsHtml = `
+                <p class="text-gray-600 mb-4">${selectedSet.description}</p>
+                ${generateOptionsHtml('double-main1-option', '主餐 1', selectedSet.options.main1, order.main1Option)}
+                ${generateOptionsHtml('double-main2-option', '主餐 2', selectedSet.options.main2, order.main2Option)}
+                ${generateOptionsHtml('double-drink-option', '飲料', selectedSet.options.drink, order.drinkOption)}
+            `;
+            document.getElementById('double-set-details').innerHTML = optionsHtml;
+        }
+
+        function populateAlacarte(currentAlacarte = {}) {
+            alacarteSection.innerHTML = alacarteItems.map(item => `
+                <div class="alacarte-item-card">
+                    <img src="${item.image}" alt="${item.name}" class="alacarte-image">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-price">$${item.price}</div>
+                    <div class="quantity-controls">
+                        <button type="button" onclick="updateAlacarteQuantity('${item.id}', -1)">-</button>
+                        <input type="number" id="alacarte-${item.id}" class="alacarte-item" data-item-id="${item.id}" data-item-price="${item.price}" data-item-name="${item.name}" value="${currentAlacarte[item.id] || 0}" min="0">
+                        <button type="button" onclick="updateAlacarteQuantity('${item.id}', 1)">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateAlacarteQuantity(itemId, change) {
+            const input = document.getElementById(`alacarte-${itemId}`);
+            let currentValue = parseInt(input.value);
+            currentValue = Math.max(0, currentValue + change);
+            input.value = currentValue;
+        }
+
+        function handleOrderSubmission(event) {
+            event.preventDefault();
+
+            const orderType = document.querySelector('#set-options-container select[name="set-type"]').id === 'single-set-type' ? 'single' : 'double';
+            let currentOrder = { id: editingOrderId !== null ? editingOrderId : allOrders.length + 1, type: orderType };
+
+            if (orderType === 'single') {
+                currentOrder.set = document.getElementById('single-set-type').value;
+                currentOrder.mainOption = document.getElementById('single-main-option').value;
+                currentOrder.drinkOption = document.getElementById('single-drink-option').value;
+            } else {
+                currentOrder.set = document.getElementById('double-set-type').value;
+                currentOrder.main1Option = document.getElementById('double-main1-option').value;
+                currentOrder.main2Option = document.getElementById('double-main2-option').value;
+                currentOrder.drinkOption = document.getElementById('double-drink-option').value;
+            }
+
+            currentOrder.alacarte = {};
+            document.querySelectorAll('.alacarte-item').forEach(input => {
+                const itemId = input.dataset.itemId;
+                const quantity = parseInt(input.value);
+                if (quantity > 0) {
+                    currentOrder.alacarte[itemId] = quantity;
+                }
+            });
+
+            if (editingOrderId !== null) {
+                const index = allOrders.findIndex(order => order.id === editingOrderId);
+                if (index !== -1) {
+                    allOrders[index] = currentOrder;
+                }
+                editingOrderId = null;
+            } else {
+                allOrders.push(currentOrder);
+            }
+            renderSummary();
+        }
+
+        function calculateOrderPrice(order) {
+            let price = 0;
+            if (order.type === 'single') {
+                price += singleSets[order.set].price;
+            } else {
+                price += doubleSets[order.set].price;
+            }
+            for (const itemId in order.alacarte) {
+                const item = alacarteItems.find(a => a.id === itemId);
+                if (item) {
+                    price += item.price * order.alacarte[itemId];
+                }
+            }
+            return price;
+        }
+
+        function renderSummary() {
+            const orderDetailsContainer = document.getElementById('order-details');
+            orderDetailsContainer.innerHTML = '';
+            let total = 0;
+
+            allOrders.forEach(order => {
+                const orderPrice = calculateOrderPrice(order);
+                total += orderPrice;
+
+                let orderHtml = `
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-lg">訂單 #${order.id} (${order.type === 'single' ? '單人' : '雙人'})</h4>
+                            <button class="edit-order-btn bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-3 rounded" data-order-id="${order.id}">編輯</button>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                `;
+
+                if (order.type === 'single') {
+                    const setInfo = singleSets[order.set];
+                    orderHtml += `
+                        <li>套餐: ${setInfo.name} ($${setInfo.price})</li>
+                        <li>主餐: ${order.mainOption}</li>
+                        <li>飲料: ${order.drinkOption}</li>
+                    `;
+                } else {
+                    const setInfo = doubleSets[order.set];
+                    orderHtml += `
+                        <li>套餐: ${setInfo.name} ($${setInfo.price})</li>
+                        <li>主餐 1: ${order.main1Option}</li>
+                        <li>主餐 2: ${order.main2Option}</li>
+                        <li>飲料: ${order.drinkOption}</li>
+                    `;
+                }
+
+                for (const itemId in order.alacarte) {
+                    const item = alacarteItems.find(a => a.id === itemId);
+                    if (item) {
+                        orderHtml += `<li>${item.name} x ${order.alacarte[itemId]} ($${item.price * order.alacarte[itemId]})</li>`;
+                    }
+                }
+
+                orderHtml += `
+                        </ul>
+                        <div class="text-right font-semibold mt-2">小計: $${orderPrice}</div>
+                    </div>
+                `;
+                orderDetailsContainer.innerHTML += orderHtml;
+            });
+
+            document.getElementById('order-total').textContent = `$${total}`;
+            summaryDinerCountInput.value = totalDiners;
+            showView('summary-view');
+        }
+
+        function startNextDiner() {
+            if (dinersOrdered < totalDiners) {
+                dinersOrdered++;
+                document.getElementById('ordering-person-title').textContent = `為第 ${dinersOrdered} 位顧客點餐`;
+                document.getElementById('ordering-hero-image-container').innerHTML = ''; // Clear previous hero image
+                setOptionsContainer.innerHTML = ''; // Clear previous options
+                alacarteSection.innerHTML = ''; // Clear previous alacarte
+                editingOrderId = null;
+                showView('set-selection-view');
+            } else {
+                renderSummary();
+            }
+        }
+
+        function editOrder(orderId) {
+            editingOrderId = orderId;
+            const orderToEdit = allOrders.find(order => order.id === orderId);
+            if (!orderToEdit) return;
+
+            document.getElementById('ordering-person-title').textContent = `編輯訂單 #${orderId}`;
+
+            const heroContainer = document.getElementById('ordering-hero-image-container');
+            if (orderToEdit.type === 'double') {
+                 heroContainer.innerHTML = `
+                    <div class="hero-block bg-stone-700">
+                        <h2 class="text-3xl font-bold">雙人總督套餐</h2>
+                    </div>
+                    <img src="https://i.urusai.cc/WifQy.jpg" alt="雙人總督套餐示意圖" class="w-full h-auto">
+                `;
+            } else {
+                heroContainer.innerHTML = `<div class="hero-block bg-amber-800"><h2 class="text-3xl font-bold">單人日式套餐</h2></div>`;
+            }
+
+            if (orderToEdit.type === 'single') populateSingleSetForm(orderToEdit);
+            else populateDoubleSetForm(orderToEdit);
+            showView('ordering-view');
+        }
+
+        function restartApp() {
+            totalDiners = 2;
+            dinersOrdered = 0;
+            allOrders = [];
+            editingOrderId = null;
+            dinerCountInput.value = '2';
+            summaryDinerCountInput.value = '2';
+            document.getElementById('alacarte-section').innerHTML = '';
+            showView('start-view');
+        }
+
+        // --- EVENT LISTENERS ---
+        document.getElementById('start-order-btn').addEventListener('click', () => {
+            totalDiners = +dinerCountInput.value;
+            if (totalDiners > 6 || totalDiners < 1) return alert("用餐人數必須介於 1 到 6 位之間。");
+            dinersOrdered = 0;
+            allOrders = [];
+            startNextDiner();
+        });
+        
+        document.getElementById('set-selection-view').addEventListener('click', e => {
+            const choice = e.target.closest('.set-choice-btn');
+            if (!choice) return;
+            const setType = choice.dataset.setType;
+            const isDouble = setType === 'double';
+            if (isDouble && totalDiners - dinersOrdered < 2) return alert('剩餘用餐人數不足，無法選擇雙人套餐。');
+            
+            document.getElementById('ordering-person-title').textContent = `為第 ${dinersOrdered + 1} 位顧客點餐`;
+            
+            const heroContainer = document.getElementById('ordering-hero-image-container');
+            if (isDouble) {
+                 heroContainer.innerHTML = `
+                    <div class="hero-block bg-stone-700">
+                        <h2 class="text-3xl font-bold">雙人總督套餐</h2>
+                    </div>
+                    <img src="https://i.urusai.cc/WifQy.jpg" alt="雙人總督套餐示意圖" class="w-full h-auto">
+                `;
+            } else {
+                heroContainer.innerHTML = `<div class="hero-block bg-amber-800"><h2 class="text-3xl font-bold">單人日式套餐</h2></div>`;
+            }
+            
+            isDouble ? populateDoubleSetForm() : populateSingleSetForm();
+            showView('ordering-view');
+        });
+
+        document.getElementById('main-content').addEventListener('click', e => {
+            if (e.target.closest('.edit-order-btn')) editOrder(+e.target.closest('.edit-order-btn').dataset.orderId);
+            if (e.target.closest('.back-to-select')) editingOrderId ? renderSummary() : startNextDiner();
+        });
+        
+        summaryDinerCountInput.addEventListener('change', () => {
+            const newTotal = +summaryDinerCountInput.value;
+            if (newTotal < dinersOrdered) {
+                alert(`無法將人數設為少於已點餐人數(${dinersOrdered})。`);
+                summaryDinerCountInput.value = totalDiners;
+                return;
+            }
+            totalDiners = newTotal;
+            renderSummary();
+        });
+
+        document.getElementById('add-more-diners-btn').addEventListener('click', startNextDiner);
+        document.getElementById('back-to-home-btn1').addEventListener('click', () => showView('start-view'));
+        orderForm.addEventListener('submit', handleOrderSubmission);
+
+        document.getElementById('submit-final-order-btn').addEventListener('click', () => {
+            document.getElementById('final-order-details').innerHTML = document.getElementById('order-details').innerHTML.replace(/<button.*?<\/button>/g, '');
+            let alacarteSummary = Array.from(document.querySelectorAll('.alacarte-item')).filter(i => i.value > 0).map(i => `<li>${i.name} x ${i.value}</li>`).join('');
+            if(alacarteSummary) {
+                 document.getElementById('final-order-details').innerHTML += `<div class="p-4 border rounded-lg bg-gray-50"><h3 class="font-bold text-lg mb-2">單點加購</h3><ul class="list-disc list-inside text-gray-600 space-y-1">${alacarteSummary}</ul></div>`;
+            }
+            document.getElementById('final-order-total').innerHTML = document.getElementById('order-total').innerHTML;
+            
+            const now = new Date();
+            const pad = (num) => num.toString().padStart(2, '0');
+            const orderNumber = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+            document.getElementById('order-number-display').innerHTML = `<p class="text-lg">訂單編號: <strong>${orderNumber}</strong></p>`;
+
+            showView('final-order-view');
+        });
+
+        document.getElementById('restart-order-btn').addEventListener('click', restartApp);
+
+        // Initialize the app
+        restartApp();
+    </script>
+</body>
+</html>
+
