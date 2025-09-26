@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artgo Cafe 雅鴿書院 - 日式料理 極上總督盛宴</title>
+    <title>Artgo Cafe 雅鴿書院－日式料理 極上總督盛宴</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -12,493 +13,586 @@
             background-color: #f5f3f1;
             color: #3e2723;
         }
-
         .card {
             background-color: #ffffff;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
-
         .hero-image {
             width: 100%;
             aspect-ratio: 16 / 9;
             object-fit: cover;
         }
-
         .hero-block {
             color: white;
             text-align: center;
             padding: 2.5rem 1rem;
         }
-
         @media (min-width: 768px) {
             .hero-block {
                 padding: 3.5rem 1.5rem;
             }
         }
-
         .category-image, .alacarte-image {
-            width: 100%;
+             width: 100%;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1rem;
         }
-
-        .alacarte-item-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            background-color: #fff;
-        }
-
-        .alacarte-item-card img {
-            width: 100px;
-            height: 100px;
+        .final-page-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
             object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
+            border-radius: 8px;
         }
-
-        .alacarte-item-card .item-name {
-            font-weight: 500;
-            margin-bottom: 0.25rem;
+        .section-title {
+            color: #3e2723;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 2px solid #a1887f;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
-
-        .alacarte-item-card .item-price {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .alacarte-item-card .quantity-controls {
+        label.option-label {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .alacarte-item-card .quantity-controls button {
-            background-color: #f3f4f6;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            padding: 0.25rem 0.75rem;
-            font-size: 1rem;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
-
-        .alacarte-item-card .quantity-controls input {
-            width: 40px;
-            text-align: center;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            padding: 0.25rem;
+        label.option-label:hover, input:checked + label.option-label {
+            background-color: #efebe9;
+            border-color: #a1887f;
         }
-
-        .view-section {
+        input[type="radio"], input[type="checkbox"] {
             display: none;
         }
-
-        .view-section.active {
-            display: block;
+        .price {
+            font-weight: 500;
+            color: #5d4037;
+        }
+        .btn {
+            background-color: #8d6e63;
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover { background-color: #6d4c41; }
+        .btn-secondary { background-color: #a1887f; }
+        .btn-secondary:hover { background-color: #8d6e63; }
+        .btn-large { padding: 1.1rem 2.2rem; font-size: 1.25rem; }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            color: #5d4037;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 0 0.25rem;
+            font-size: 1.25rem;
+        }
+        .contact-btn:hover { background-color: #e0e0e0; }
+        .set-choice-btn {
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            color: white;
+        }
+        .set-choice-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: #8d6e63;
+        }
+        .fixed-item {
+            background-color: #fafafa;
+            padding: 0.75rem;
+            border-radius: 6px;
+            color: #555;
+        }
+        .subtotal-display {
+            background-color: #efebe9;
+            color: #3e2723;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-align: right;
+        }
+        .notice-text {
+            font-size: 0.8rem;
+            color: #757575;
+            text-align: center;
+            line-height: 1.7;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <header class="bg-white shadow-sm p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-amber-800">Artgo Cafe 雅鴿書院</h1>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="#" class="text-gray-600 hover:text-amber-800">菜單</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-amber-800">預約</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-amber-800">聯絡我們</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="p-4 md:p-8">
 
-    <main class="flex-grow container mx-auto p-4 md:p-8">
-        <div id="start-view" class="view-section active">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl font-bold text-amber-800 mb-4">歡迎來到雅鴿書院</h2>
-                <p class="text-lg text-gray-700">請選擇用餐人數以開始點餐</p>
-            </div>
+    <div class="max-w-2xl mx-auto">
+        <div class="card">
+            
+            <div id="main-content">
+                <!-- Start View -->
+                <div id="start-view">
+                    <div class="p-6 md:p-8">
+                        <div class="text-center">
+                            <h1 class="text-2xl md:text-3xl font-bold mb-2">Artgo Cafe 雅鴿書院</h1>
+                            <h2 class="text-xl md:text-2xl font-semibold text-gray-600 mb-6">日式料理 極上總督盛宴</h2>
+                        </div>
 
-            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-                <label for="diner-count" class="block text-gray-700 text-sm font-bold mb-2">用餐人數:</label>
-                <input type="number" id="diner-count" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="2" min="1" max="6">
-                <button id="start-order-btn" class="mt-4 bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">開始點餐</button>
-            </div>
-        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 items-center">
+                            <img src="https://i.urusai.cc/5Gxbe.jpg" alt="孫立人將軍官邸" class="w-full h-48 object-cover rounded-lg">
+                            <div>
+                                <h3 class="text-lg font-bold mb-2">孫立人將軍官邸</h3>
+                                <p class="text-sm text-gray-600">雅鴿書院位於將軍官邸-和館區域，此區曾作為研究中心，有日治時代最早的圖書館之稱。在百年古蹟裡結合日式美食與文化，交融出全新風格的饗宴體驗。</p>
+                            </div>
+                        </div>
 
-        <div id="set-selection-view" class="view-section">
-            <h2 class="text-3xl font-bold text-amber-800 mb-6 text-center">選擇套餐</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="card set-choice-btn" data-set-type="single">
-                    <img src="https://i.imgur.com/WifQy.jpg" alt="單人日式套餐" class="hero-image">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2">單人日式套餐</h3>
-                        <p class="text-gray-700 mb-4">精選日式料理，一人獨享的美味。</p>
-                        <button class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded w-full">選擇</button>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 items-center">
+                             <div>
+                                <h3 class="text-lg font-bold mb-2">關於雅鴿書院</h3>
+                                <p class="text-sm text-gray-600">雅鴿文創成立於2017年，本著創新的思維，希望運用台灣豐富多元的人文底蘊，融合科技與商業行銷，推動文創活動發展。</p>
+                            </div>
+                            <img src="https://i.urusai.cc/NOb6J.jpg" alt="雅鴿書院" class="w-full h-48 object-cover rounded-lg">
+                        </div>
+                        
+                        <div class="text-center my-6">
+                            <div class="flex justify-center">
+                                <a href="https://maps.app.goo.gl/Wm5D2P7WYY4Fa92L6" target="_blank" class="contact-btn"><i class="fa-solid fa-map-location-dot"></i></a>
+                                <a href="http://www.artgo.com.tw" target="_blank" class="contact-btn"><i class="fa-solid fa-globe"></i></a>
+                            </div>
+                            <a href="tel:0223962685" class="block mt-4 text-lg text-gray-700 hover:text-black no-underline">
+                                <i class="fa-solid fa-phone mr-2"></i>02-2396-2685
+                            </a>
+                        </div>
+
+                        <div class="max-w-xs mx-auto my-8">
+                            <label for="diner-count" class="block text-lg font-medium text-center mb-2">請選擇用餐人數</label>
+                            <select id="diner-count" name="diner-count" class="w-full text-center text-xl p-3 border-2 border-gray-300 rounded-lg focus:ring-amber-800 focus:border-amber-800 bg-white appearance-none">
+                                <option value="1">1 人</option>
+                                <option value="2" selected>2 人</option>
+                                <option value="3">3 人</option>
+                                <option value="4">4 人</option>
+                                <option value="5">5 人</option>
+                                <option value="6">6 人</option>
+                            </select>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button id="start-order-btn" class="btn btn-large">開始點餐</button>
+                        </div>
+
+                        <div class="mt-8 notice-text">
+                            <p>本店另收10%服務費</p>
+                            <p>下午茶時段低消為一杯飲品，午晚餐時段為一個套餐</p>
+                            <p>不得攜帶外食入內食用，違者酌收500元清潔費</p>
+                            <p>餐點恕不提供外帶，煩請見諒</p>
+                            <p>Wifi 名稱：孫立人官邸WIFI \ 密碼：12345678</p>
+                        </div>
                     </div>
                 </div>
-                <div class="card set-choice-btn" data-set-type="double">
-                    <img src="https://i.imgur.com/WifQy.jpg" alt="雙人總督套餐" class="hero-image">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2">雙人總督套餐</h3>
-                        <p class="text-gray-700 mb-4">豐盛雙人份，與摯愛共享。</p>
-                        <button class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded w-full">選擇</button>
+
+                <!-- Set Selection View -->
+                <div id="set-selection-view" class="hidden">
+                     <img src="https://i.urusai.cc/X7J3U.jpg" alt="極上總督盛宴" class="hero-image">
+                     <div class="p-6 md:p-8">
+                        <h2 id="person-title" class="text-xl font-bold text-center mb-6"></h2>
+                        <div class="grid grid-cols-2 gap-4 md:gap-6">
+                            <div class="set-choice-btn bg-amber-800" data-set-type="single">
+                                <div class="text-center">
+                                    <h3 class="text-xl md:text-2xl font-semibold">單人日式套餐</h3>
+                                </div>
+                            </div>
+                            <div class="set-choice-btn bg-stone-700" data-set-type="double">
+                                <div class="text-center">
+                                    <h3 class="text-xl md:text-2xl font-semibold">雙人總督套餐</h3>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="mt-8 text-center">
+                            <button id="back-to-home-btn1" class="btn btn-secondary">回首頁修改人數</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ordering View -->
+                <div id="ordering-view" class="hidden">
+                     <div id="ordering-hero-image-container"></div>
+                     <div class="p-6 md:p-8">
+                         <h2 id="ordering-person-title" class="text-xl font-bold text-center mb-6"></h2>
+                         <form id="order-form" class="space-y-8"></form>
+                     </div>
+                </div>
+
+                <!-- Summary View -->
+                <div id="summary-view" class="hidden">
+                    <img src="https://i.urusai.cc/X7J3U.jpg" alt="極上總督盛宴" class="hero-image">
+                    <div class="p-6 md:p-8">
+                        <h2 class="section-title">訂單總覽</h2>
+                        <div id="order-details" class="space-y-6"></div>
+                        
+                        <div id="alacarte-section" class="mt-8"></div>
+                        
+                        <div id="order-total" class="mt-8 pt-4 border-t-2 text-right space-y-2 font-semibold"></div>
+                        <div class="mt-8 flex flex-wrap justify-between items-center gap-4">
+                           <div class="flex items-center space-x-2">
+                                <label for="summary-diner-count">人數:</label>
+                                <select id="summary-diner-count" name="summary-diner-count" class="w-24 text-center p-2 border-2 border-gray-300 rounded-lg bg-white appearance-none">
+                                    <option value="1">1 人</option>
+                                    <option value="2" selected>2 人</option>
+                                    <option value="3">3 人</option>
+                                    <option value="4">4 人</option>
+                                    <option value="5">5 人</option>
+                                    <option value="6">6 人</option>
+                                </select>
+                            </div>
+                            <div class="flex gap-2">
+                               <button id="add-more-diners-btn" class="btn btn-secondary">繼續點餐</button>
+                               <button id="submit-final-order-btn" class="btn">確認送出訂單</button>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Order View (Screenshot page) -->
+            <div id="final-order-view" class="hidden">
+                 <img src="https://i.urusai.cc/X7J3U.jpg" alt="極上總督盛宴" class="hero-image">
+                 <div class="p-6 md:p-8">
+                    <h2 class="section-title text-center">您的訂單已確認</h2>
+                    <div id="order-number-display" class="text-center text-gray-600 mb-6"></div>
+                    <div id="final-order-details" class="space-y-6"></div>
+                    <div id="final-order-total" class="mt-8 pt-4 border-t-2 text-right space-y-2 font-semibold"></div>
+                    
+                    <div class="mt-8 text-center">
+                        <img src="https://i.urusai.cc/NOb6J.jpg" alt="雅鴿書院" class="final-page-image mb-6">
+                         <div class="text-center my-6">
+                            <div class="flex justify-center">
+                                <a href="https://maps.app.goo.gl/Wm5D2P7WYY4Fa92L6" target="_blank" class="contact-btn"><i class="fa-solid fa-map-location-dot"></i></a>
+                                <a href="http://www.artgo.com.tw" target="_blank" class="contact-btn"><i class="fa-solid fa-globe"></i></a>
+                            </div>
+                            <a href="tel:0223962685" class="block mt-4 text-lg text-gray-700 hover:text-black no-underline">
+                                <i class="fa-solid fa-phone mr-2"></i>02-2396-2685
+                            </a>
+                        </div>
+                        <button id="restart-order-btn" class="btn btn-large">回到首頁，重新點餐</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="ordering-view" class="view-section">
-            <h2 id="ordering-person-title" class="text-3xl font-bold text-amber-800 mb-6 text-center">為第 1 位顧客點餐</h2>
-            <div id="ordering-hero-image-container" class="card mb-6">
-                <!-- Hero image and block will be injected here -->
-            </div>
-
-            <form id="order-form" class="bg-white p-6 rounded-lg shadow-md">
-                <div id="set-options-container">
-                    <!-- Set specific options will be injected here -->
-                </div>
-
-                <div class="mt-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">單點加購</h3>
-                    <div id="alacarte-section" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <!-- Alacarte items will be injected here -->
-                    </div>
-                </div>
-
-                <div class="flex justify-between mt-8">
-                    <button type="button" class="back-to-select bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">返回選擇套餐</button>
-                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">確認點餐</button>
-                </div>
-            </form>
-        </div>
-
-        <div id="summary-view" class="view-section">
-            <h2 class="text-3xl font-bold text-amber-800 mb-6 text-center">訂單摘要</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-2xl font-bold text-gray-800">已點餐項目</h3>
-                    <div class="flex items-center">
-                        <label for="summary-diner-count" class="text-gray-700 text-sm font-bold mr-2">總用餐人數:</label>
-                        <input type="number" id="summary-diner-count" class="shadow appearance-none border rounded py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-20" min="1" max="6">
-                    </div>
-                </div>
-                <div id="order-details" class="space-y-4">
-                    <!-- Order details will be injected here -->
-                </div>
-                <div class="text-right mt-6 pt-4 border-t border-gray-200">
-                    <p class="text-xl font-bold text-gray-800">總計: <span id="order-total">$0</span></p>
-                </div>
-            </div>
-            <div class="flex justify-between">
-                <button id="add-more-diners-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">繼續為下一位點餐</button>
-                <button id="submit-final-order-btn" class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded">提交最終訂單</button>
-            </div>
-        </div>
-
-        <div id="final-order-view" class="view-section">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl font-bold text-amber-800 mb-4">感謝您的訂購！</h2>
-                <p class="text-lg text-gray-700">您的訂單已成功送出。</p>
-                <div id="order-number-display" class="mt-4 text-xl font-semibold text-gray-800"></div>
-            </div>
-
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">您的訂單詳情</h3>
-                <div id="final-order-details" class="space-y-4 mb-6">
-                    <!-- Final order details will be injected here -->
-                </div>
-                <div class="text-right pt-4 border-t border-gray-200">
-                    <p class="text-xl font-bold text-gray-800">總計: <span id="final-order-total">$0</span></p>
-                </div>
-            </div>
-
-            <div class="text-center mt-8">
-                <button id="restart-order-btn" class="bg-amber-800 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded">重新開始點餐</button>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-gray-800 text-white p-4 mt-8">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2023 Artgo Cafe 雅鴿書院. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // View management
-        function showView(viewId) {
-            document.querySelectorAll(".view-section").forEach(view => {
-                view.classList.remove("active");
-            });
-            document.getElementById(viewId).classList.add("active");
-        }
+        const menuData = {
+            singleSet: {
+                name: '單人日式套餐',
+                fixedItems: ['開胃小菜', '土瓶蒸', '甜點'],
+                options: {
+                    appetizer: { title: '前菜 (2選1)', items: [{ name: '刺身', price: 0 }, { name: '鮑魚沙拉', price: 0 }] },
+                    mainCourse: {
+                        title: '主餐 (選1)',
+                        categories: {
+                            '烤物': { image: 'https://i.urusai.cc/CfRgb.jpg', items: [{ name: "味噌松阪豬", price: 950 }, { name: "烤魚下巴", price: 950 }, { name: "烤一夜干(一尾)", price: 1050 }, { name: "烤鮭魚頭", price: 1380 }] },
+                            '握壽司': { image: 'https://i.urusai.cc/wtFQv.jpg', items: [{ name: "綜合海鮮握壽司(七貫)", price: 950 }, { name: "鮭魚握壽司(七貫)", price: 950 }, { name: "炙燒鮭魚腹壽司(七貫)", price: 970 }] },
+                            '海鮮丼': { image: 'https://i.urusai.cc/bKCC3.jpg', items: [{ name: "極上海鮮丼", price: 950 }, { name: "綜合炙燒海鮮丼", price: 970 }] },
+                            '烤物丼飯': { image: 'https://i.urusai.cc/q3vTn.jpg', items: [{ name: "帶骨牛小排丼", price: 950 }, { name: "醬烤鰻魚丼", price: 990 }] }
+                        }
+                    },
+                    sideDish: { title: '附餐 (3選1)', items: [{ name: "炙燒明太子山藥", price: 0 }, { name: "生食級明太子干貝", price: 120 }, { name: "烤一夜干(半隻)", price: 150 }] },
+                    drink: { title: '飲料 (2選1)', items: [{ name: '美式咖啡', price: 0 }, { name: '紅茶', price: 0 }] }
+                }
+            },
+            doubleSet: {
+                name: '雙人總督套餐',
+                basePrice: 2780,
+                fixedItems: ['開胃小菜x2', '前菜刺身', '烤一夜干', '總督握壽司', '烤鰻魚飯x2', '土瓶蒸x2', '甜點x2'],
+                options: {
+                    mainChoice: { title: '主餐選擇 (2選1)', items: [{ name: '味噌松阪豬', price: 0 }, { name: '日式帶骨牛小排', price: 0 }] },
+                    drinks: { title: '飲料 (2選2)', items: ['美式咖啡', '紅茶'] }
+                }
+            },
+            aLaCarte: {
+                 '單點烤物': { image: 'https://i.urusai.cc/XDAqa.jpg', items: [{ name: '明太子飯糰(一顆)', price: 100 }, { name: '生食級明太子干貝(一顆)', price: 150 }, { name: '烤一夜干(一尾)', price: 480 }, { name: '烤魚下巴(一個)', price: 500 }, { name: '烤鮭魚頭(一個)', price: 750 }] },
+                 '單點握壽司': { image: 'https://i.urusai.cc/3CAfq.jpg', items: [{ name: '花壽司(一貫)', price: 50 }, { name: '生鮭魚握壽司(七貫)', price: 720 }, { name: '炙燒鮭魚腹壽司(七貫)', price: 720 }, { name: '總督握壽司(十貫)', price: 800 }] }
+            }
+        };
 
-        // Global state
+        // --- STATE MANAGEMENT ---
         let totalDiners = 2;
         let dinersOrdered = 0;
-        let allOrders = []; // Stores objects like { id: 1, type: 'single', set: 'A', alacarte: { 'item1': 2 } }
+        let allOrders = [];
         let editingOrderId = null;
 
-        // DOM elements
-        const dinerCountInput = document.getElementById("diner-count");
-        const summaryDinerCountInput = document.getElementById("summary-diner-count");
-        const orderForm = document.getElementById("order-form");
-        const setOptionsContainer = document.getElementById("set-options-container");
-        const alacarteSection = document.getElementById("alacarte-section");
+        // --- DOM ELEMENTS ---
+        const allViews = ['start-view', 'set-selection-view', 'ordering-view', 'summary-view', 'final-order-view'];
+        const dinerCountInput = document.getElementById('diner-count');
+        const summaryDinerCountInput = document.getElementById('summary-diner-count');
+        const orderForm = document.getElementById('order-form');
 
-        // Data for sets and alacarte items
-        const singleSets = {
-            A: { name: "日式經典套餐", price: 350, description: "主餐、沙拉、湯、甜點、飲料", options: { main: ["照燒雞腿", "鹽烤鯖魚"], drink: ["紅茶", "綠茶", "咖啡"] } },
-            B: { name: "豪華海鮮套餐", price: 480, description: "主餐、生魚片、沙拉、湯、甜點、飲料", options: { main: ["豪華海鮮丼", "烤鰻魚飯"], drink: ["紅茶", "綠茶", "咖啡", "果汁"] } }
-        };
+        // --- UTILITY FUNCTIONS ---
+        const formatPrice = (price) => price.toLocaleString('en-US');
 
-        const doubleSets = {
-            C: { name: "總督雙人套餐", price: 880, description: "兩份主餐、兩份沙拉、兩份湯、兩份甜點、兩份飲料", options: { main1: ["照燒雞腿", "鹽烤鯖魚", "豪華海鮮丼"], main2: ["照燒雞腿", "鹽烤鯖魚", "烤鰻魚飯"], drink: ["紅茶", "綠茶", "咖啡", "果汁", "可樂"] } }
-        };
-
-        const alacarteItems = [
-            { id: "tempura", name: "炸蝦天婦羅", price: 120, image: "https://i.imgur.com/WifQy.jpg" },
-            { id: "sushi", name: "綜合壽司", price: 180, image: "https://i.imgur.com/WifQy.jpg" },
-            { id: "sashimi", name: "生魚片拼盤", price: 250, image: "https://i.imgur.com/WifQy.jpg" },
-            { id: "miso", name: "味噌湯", price: 60, image: "https://i.imgur.com/WifQy.jpg" }
-        ];
-
-        function generateOptionsHtml(id, label, options, selectedValue = '') {
-            return `
-                <div class="mb-4">
-                    <label for="${id}" class="block text-gray-700 text-sm font-bold mb-2">${label}:</label>
-                    <select id="${id}" name="${id}" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        ${options.map(option => `<option value="${option}" ${selectedValue === option ? 'selected' : ''}>${option}</option>`).join('')}
-                    </select>
-                </div>
-            `;
+        function showView(viewId) {
+            window.scrollTo(0, 0);
+            allViews.forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById(viewId).classList.remove('hidden');
+            document.getElementById('main-content').classList.toggle('hidden', viewId === 'final-order-view');
         }
 
-        function populateSingleSetForm(order = {}) {
-            setOptionsContainer.innerHTML = `
-                <div class="mb-4">
-                    <label for="single-set-type" class="block text-gray-700 text-sm font-bold mb-2">選擇套餐類型:</label>
-                    <select id="single-set-type" name="set-type" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        ${Object.keys(singleSets).map(key => `<option value="${key}" ${order.set === key ? 'selected' : ''}>${singleSets[key].name} ($${singleSets[key].price})</option>`).join('')}
-                    </select>
-                </div>
-                <div id="single-set-details">
-                    <!-- Dynamic options based on set type -->
-                </div>
-            `;
-            document.getElementById('single-set-type').addEventListener('change', updateSingleSetOptions);
-            updateSingleSetOptions(order);
-            populateAlacarte(order.alacarte || {});
+        const getFormData = form => Object.fromEntries(new FormData(form).entries());
+
+        // --- FORM BUILDER & RENDERING ---
+        function createRadioGroup(name, title, items) {
+            const itemsHTML = items.map((item, index) => `
+                <div>
+                    <input type="radio" id="${name}-${index}" name="${name}" value="${item.name}" data-price="${item.price}" required ${index === 0 ? 'checked' : ''}>
+                    <label for="${name}-${index}" class="option-label">
+                        <span>${item.name}</span>
+                        <span class="price">${item.price > 0 ? `+NT$ ${formatPrice(item.price)}` : '+NT$ 0'}</span>
+                    </label>
+                </div>`).join('');
+            return `<div><h3 class="section-title text-base">${title}</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-3">${itemsHTML}</div></div>`;
+        }
+        
+        function createSelectGroup(name, title, items) {
+            const optionsHTML = items.map(item => `<option value="${item}">${item}</option>`).join('');
+            return `<div class="md:col-span-1"><label for="${name}" class="block text-sm font-medium text-gray-700 mb-1">${title}</label><select id="${name}" name="${name}" class="w-full p-2 border border-gray-300 rounded-md">${optionsHTML}</select></div>`;
         }
 
-        function updateSingleSetOptions(orderOrEvent) {
-            const order = orderOrEvent.target ? {} : orderOrEvent; // Check if it's an event or an order object
-            const selectedSetKey = orderOrEvent.target ? orderOrEvent.target.value : (order.set || Object.keys(singleSets)[0]);
-            const selectedSet = singleSets[selectedSetKey];
-            let optionsHtml = `
-                <p class="text-gray-600 mb-4">${selectedSet.description}</p>
-                ${generateOptionsHtml('single-main-option', '主餐', selectedSet.options.main, order.mainOption)}
-                ${generateOptionsHtml('single-drink-option', '飲料', selectedSet.options.drink, order.drinkOption)}
-            `;
-            document.getElementById('single-set-details').innerHTML = optionsHtml;
+        function createFixedItemsSection(title, items) {
+            const itemsHTML = items.map(item => `<li class="fixed-item">${item}</li>`).join('');
+            return `<div><h3 class="section-title text-base">${title}</h3><ul class="grid grid-cols-2 md:grid-cols-3 gap-2">${itemsHTML}</ul></div>`;
+        }
+        
+        function populateSingleSetForm(orderData = null) {
+            const { appetizer, mainCourse, sideDish, drink } = menuData.singleSet.options;
+            orderForm.dataset.formType = 'single';
+            
+            let mainCourseHTML = `<h3 class="section-title text-base">${mainCourse.title}</h3>`;
+            for (const [category, data] of Object.entries(mainCourse.categories)) {
+                mainCourseHTML += `
+                    <div>
+                        <img src="${data.image}" alt="${category}" class="category-image">
+                        <h4 class="font-semibold text-gray-700 mb-2 text-center">${category}主餐</h4>
+                        ${data.items.map((item, index) => `
+                            <div class="ml-4 mb-2">
+                                <input type="radio" id="mainCourse-${category}-${index}" name="mainCourse" value="${item.name}" data-price="${item.price}" required>
+                                <label for="mainCourse-${category}-${index}" class="option-label">
+                                    <span>${item.name}</span>
+                                    <span class="price">NT$ ${formatPrice(item.price)}</span>
+                                </label>
+                            </div>`).join('')}
+                    </div>`;
+            }
+
+            orderForm.innerHTML = `
+                ${createFixedItemsSection('固定菜色', menuData.singleSet.fixedItems.slice(0, 1))}
+                ${createRadioGroup('appetizer', appetizer.title, appetizer.items)}
+                <div>${mainCourseHTML}</div>
+                ${createRadioGroup('sideDish', sideDish.title, sideDish.items)}
+                ${createFixedItemsSection('', menuData.singleSet.fixedItems.slice(1))}
+                ${createRadioGroup('drink', drink.title, drink.items)}
+                <p class="notice-text text-sm mt-4">附餐飲品價值200元,可補差額更換/圖片僅供參考,以實際提供為主</p>
+                <div class="subtotal-display" id="live-subtotal"></div>
+                <div class="flex justify-between items-center pt-4">
+                    <button type="button" class="btn btn-secondary back-to-select">返回選擇套餐</button>
+                    <button type="submit" class="btn">確定此位顧客餐點</button>
+                </div>`;
+
+            if (orderData) {
+                Object.entries(orderData.selections).forEach(([key, value]) => {
+                    const input = orderForm.querySelector(`[name="${key}"][value="${value}"]`);
+                    if (input) input.checked = true;
+                });
+            } else {
+                orderForm.querySelector('[name="mainCourse"]').checked = true;
+            }
+            orderForm.querySelectorAll('input[type="radio"]').forEach(radio => radio.addEventListener('change', updateLiveSubtotal));
+            updateLiveSubtotal();
         }
 
-        function populateDoubleSetForm(order = {}) {
-            setOptionsContainer.innerHTML = `
-                <div class="mb-4">
-                    <label for="double-set-type" class="block text-gray-700 text-sm font-bold mb-2">選擇套餐類型:</label>
-                    <select id="double-set-type" name="set-type" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        ${Object.keys(doubleSets).map(key => `<option value="${key}" ${order.set === key ? 'selected' : ''}>${doubleSets[key].name} ($${doubleSets[key].price})</option>`).join('')}
-                    </select>
-                </div>
-                <div id="double-set-details">
-                    <!-- Dynamic options based on set type -->
-                </div>
-            `;
-            document.getElementById('double-set-type').addEventListener('change', updateDoubleSetOptions);
-            updateDoubleSetOptions(order);
-            populateAlacarte(order.alacarte || {});
-        }
-
-        function updateDoubleSetOptions(orderOrEvent) {
-            const order = orderOrEvent.target ? {} : orderOrEvent; // Check if it's an event or an order object
-            const selectedSetKey = orderOrEvent.target ? orderOrEvent.target.value : (order.set || Object.keys(doubleSets)[0]);
-            const selectedSet = doubleSets[selectedSetKey];
-            let optionsHtml = `
-                <p class="text-gray-600 mb-4">${selectedSet.description}</p>
-                ${generateOptionsHtml('double-main1-option', '主餐 1', selectedSet.options.main1, order.main1Option)}
-                ${generateOptionsHtml('double-main2-option', '主餐 2', selectedSet.options.main2, order.main2Option)}
-                ${generateOptionsHtml('double-drink-option', '飲料', selectedSet.options.drink, order.drinkOption)}
-            `;
-            document.getElementById('double-set-details').innerHTML = optionsHtml;
-        }
-
-        function populateAlacarte(currentAlacarte = {}) {
-            alacarteSection.innerHTML = alacarteItems.map(item => `
-                <div class="alacarte-item-card">
-                    <img src="${item.image}" alt="${item.name}" class="alacarte-image">
-                    <div class="item-name">${item.name}</div>
-                    <div class="item-price">$${item.price}</div>
-                    <div class="quantity-controls">
-                        <button type="button" onclick="updateAlacarteQuantity('${item.id}', -1)">-</button>
-                        <input type="number" id="alacarte-${item.id}" class="alacarte-item" data-item-id="${item.id}" data-item-price="${item.price}" data-item-name="${item.name}" value="${currentAlacarte[item.id] || 0}" min="0">
-                        <button type="button" onclick="updateAlacarteQuantity('${item.id}', 1)">+</button>
+        function populateDoubleSetForm(orderData = null) {
+            const { mainChoice, drinks } = menuData.doubleSet.options;
+            orderForm.dataset.formType = 'double';
+            orderForm.innerHTML = `
+                ${createFixedItemsSection('套餐內容', menuData.doubleSet.fixedItems)}
+                ${createRadioGroup('mainChoice', mainChoice.title, mainChoice.items)}
+                <div>
+                    <h3 class="section-title text-base">${drinks.title}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        ${createSelectGroup('drink1', '第一杯', drinks.items)}
+                        ${createSelectGroup('drink2', '第二杯', drinks.items)}
                     </div>
                 </div>
-            `).join('');
+                 <p class="notice-text text-sm mt-4">附餐飲品價值200元,可補差額更換/圖片僅供參考,以實際提供為主</p>
+                <div class="subtotal-display" id="live-subtotal"></div>
+                <div class="flex justify-between items-center pt-4">
+                  <button type="button" class="btn btn-secondary back-to-select">返回選擇套餐</button>
+                  <button type="submit" class="btn">確定這兩位顧客餐點</button>
+                </div>`;
+            if (orderData) {
+                const { mainChoice, drink1, drink2 } = orderData.selections;
+                orderForm.querySelector(`[name="mainChoice"][value="${mainChoice}"]`).checked = true;
+                orderForm.querySelector(`[name="drink1"]`).value = drink1;
+                orderForm.querySelector(`[name="drink2"]`).value = drink2;
+            }
+            updateLiveSubtotal();
         }
 
-        function updateAlacarteQuantity(itemId, change) {
-            const input = document.getElementById(`alacarte-${itemId}`);
-            let currentValue = parseInt(input.value);
-            currentValue = Math.max(0, currentValue + change);
-            input.value = currentValue;
+        function updateLiveSubtotal() {
+            let subtotal = 0;
+            if (orderForm.dataset.formType === 'single') {
+                const main = orderForm.querySelector('[name="mainCourse"]:checked');
+                const side = orderForm.querySelector('[name="sideDish"]:checked');
+                subtotal = (main ? +main.dataset.price : 0) + (side ? +side.dataset.price : 0);
+            } else if (orderForm.dataset.formType === 'double') {
+                subtotal = menuData.doubleSet.basePrice;
+            }
+            document.getElementById('live-subtotal').textContent = `此組合計: NT$ ${formatPrice(subtotal)}`;
         }
-
-        function handleOrderSubmission(event) {
-            event.preventDefault();
-
-            const orderType = document.querySelector('#set-options-container select[name="set-type"]').id === 'single-set-type' ? 'single' : 'double';
-            let currentOrder = { id: editingOrderId !== null ? editingOrderId : allOrders.length + 1, type: orderType };
-
-            if (orderType === 'single') {
-                currentOrder.set = document.getElementById('single-set-type').value;
-                currentOrder.mainOption = document.getElementById('single-main-option').value;
-                currentOrder.drinkOption = document.getElementById('single-drink-option').value;
-            } else {
-                currentOrder.set = document.getElementById('double-set-type').value;
-                currentOrder.main1Option = document.getElementById('double-main1-option').value;
-                currentOrder.main2Option = document.getElementById('double-main2-option').value;
-                currentOrder.drinkOption = document.getElementById('double-drink-option').value;
-            }
-
-            currentOrder.alacarte = {};
-            document.querySelectorAll('.alacarte-item').forEach(input => {
-                const itemId = input.dataset.itemId;
-                const quantity = parseInt(input.value);
-                if (quantity > 0) {
-                    currentOrder.alacarte[itemId] = quantity;
-                }
-            });
-
-            if (editingOrderId !== null) {
-                const index = allOrders.findIndex(order => order.id === editingOrderId);
-                if (index !== -1) {
-                    allOrders[index] = currentOrder;
-                }
-                editingOrderId = null;
-            } else {
-                allOrders.push(currentOrder);
-            }
-            renderSummary();
-        }
-
-        function calculateOrderPrice(order) {
-            let price = 0;
-            if (order.type === 'single') {
-                price += singleSets[order.set].price;
-            } else {
-                price += doubleSets[order.set].price;
-            }
-            for (const itemId in order.alacarte) {
-                const item = alacarteItems.find(a => a.id === itemId);
-                if (item) {
-                    price += item.price * order.alacarte[itemId];
-                }
-            }
-            return price;
-        }
-
+        
         function renderSummary() {
-            const orderDetailsContainer = document.getElementById('order-details');
-            orderDetailsContainer.innerHTML = '';
-            let total = 0;
+            let grandTotal = 0;
+            document.getElementById('order-details').innerHTML = allOrders.map(order => {
+                grandTotal += order.price;
+                const mainCourseItem = order.type === 'single' ? Object.values(menuData.singleSet.options.mainCourse.categories).flatMap(c => c.items).find(i => i.name === order.selections.mainCourse) : null;
+                const sideDishItem = order.type === 'single' ? menuData.singleSet.options.sideDish.items.find(i => i.name === order.selections.sideDish) : null;
+                
+                const summaryItems = order.type === 'single' ? [
+                    `<li>開胃小菜</li>`,
+                    `<li>前菜: ${order.selections.appetizer}</li>`,
+                    `<li>主餐: ${order.selections.mainCourse} <span class="text-xs">NT$ ${formatPrice(mainCourseItem.price)}</span></li>`,
+                    `<li>附餐: ${order.selections.sideDish} ${sideDishItem.price > 0 ? `<span class='text-xs'>+NT$ ${formatPrice(sideDishItem.price)}</span>` : ''}</li>`,
+                    `<li>土瓶蒸</li>`, `<li>甜點</li>`,
+                    `<li>飲料: ${order.selections.drink}</li>`
+                ] : [
+                    `<li>開胃小菜x2</li>`,
+                    `<li>前菜刺身</li>`,
+                    `<li>烤一夜干</li>`,
+                    `<li>主餐選擇: ${order.selections.mainChoice}</li>`,
+                    `<li>總督握壽司</li>`,
+                    `<li>烤鰻魚飯x2</li>`,
+                    `<li>土瓶蒸x2</li>`,
+                    `<li>甜點x2</li>`,
+                    `<li>飲料: ${order.selections.drink1}, ${order.selections.drink2}</li>`
+                ];
 
-            allOrders.forEach(order => {
-                const orderPrice = calculateOrderPrice(order);
-                total += orderPrice;
-
-                let orderHtml = `
-                    <div class="p-4 border rounded-lg bg-gray-50">
-                        <div class="flex justify-between items-center mb-2">
-                            <h4 class="font-bold text-lg">訂單 #${order.id} (${order.type === 'single' ? '單人' : '雙人'})</h4>
-                            <button class="edit-order-btn bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-3 rounded" data-order-id="${order.id}">編輯</button>
-                        </div>
-                        <ul class="list-disc list-inside text-gray-600 space-y-1">
-                `;
-
-                if (order.type === 'single') {
-                    const setInfo = singleSets[order.set];
-                    orderHtml += `
-                        <li>套餐: ${setInfo.name} ($${setInfo.price})</li>
-                        <li>主餐: ${order.mainOption}</li>
-                        <li>飲料: ${order.drinkOption}</li>
-                    `;
-                } else {
-                    const setInfo = doubleSets[order.set];
-                    orderHtml += `
-                        <li>套餐: ${setInfo.name} ($${setInfo.price})</li>
-                        <li>主餐 1: ${order.main1Option}</li>
-                        <li>主餐 2: ${order.main2Option}</li>
-                        <li>飲料: ${order.drinkOption}</li>
-                    `;
+                return `
+                    <div class="p-4 border rounded-lg bg-gray-50 relative">
+                        <h3 class="font-bold text-lg mb-2">${order.personLabel}: ${order.name}</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">${summaryItems.join('')}</ul>
+                        <p class="text-right font-semibold mt-2">小計: NT$ ${formatPrice(order.price)}</p>
+                        <button class="btn btn-secondary absolute top-2 right-2 px-3 py-1 text-sm edit-order-btn" data-order-id="${order.id}">修改</button>
+                    </div>`;
+            }).join('');
+            
+            const alacarteContainer = document.getElementById('alacarte-section');
+            
+            const currentAlacarteValues = {};
+            alacarteContainer.querySelectorAll('.alacarte-item').forEach(input => {
+                if (input.value > 0) {
+                    currentAlacarteValues[input.name] = input.value;
                 }
-
-                for (const itemId in order.alacarte) {
-                    const item = alacarteItems.find(a => a.id === itemId);
-                    if (item) {
-                        orderHtml += `<li>${item.name} x ${order.alacarte[itemId]} ($${item.price * order.alacarte[itemId]})</li>`;
-                    }
-                }
-
-                orderHtml += `
-                        </ul>
-                        <div class="text-right font-semibold mt-2">小計: $${orderPrice}</div>
-                    </div>
-                `;
-                orderDetailsContainer.innerHTML += orderHtml;
             });
 
-            document.getElementById('order-total').textContent = `$${total}`;
+            alacarteContainer.innerHTML = Object.entries(menuData.aLaCarte).map(([category, data]) => `
+                <div class="mt-4">
+                     <img src="${data.image}" alt="${category}" class="alacarte-image">
+                    <h3 class="section-title text-base">${category}</h3>
+                    ${data.items.map(item => `
+                        <div class="flex justify-between items-center bg-gray-100 p-2 rounded mb-2">
+                            <span>${item.name} - NT$ ${formatPrice(item.price)}</span>
+                            <input type="number" name="${item.name}" min="0" value="${currentAlacarteValues[item.name] || 0}" class="w-20 text-center border rounded alacarte-item" data-price="${item.price}">
+                        </div>`).join('')}
+                </div>`).join('');
+            
+            alacarteContainer.querySelectorAll('.alacarte-item').forEach(input => input.addEventListener('change', renderSummary));
+            
+            let alacarteTotal = Array.from(document.querySelectorAll('.alacarte-item')).reduce((total, input) => total + (input.value * input.dataset.price), 0);
+            grandTotal += alacarteTotal;
+            const serviceCharge = Math.round(grandTotal * 0.1);
+
+            document.getElementById('order-total').innerHTML = `
+                <p class="flex justify-between"><span>餐點總計:</span> <span>NT$ ${formatPrice(grandTotal - alacarteTotal)}</span></p>
+                <p class="flex justify-between"><span>單點總計:</span> <span>NT$ ${formatPrice(alacarteTotal)}</span></p>
+                <p class="flex justify-between"><span>服務費 (10%):</span> <span>NT$ ${formatPrice(serviceCharge)}</span></p>
+                <p class="flex justify-between text-xl text-red-600"><span>最終總計:</span> <span>NT$ ${formatPrice(grandTotal + serviceCharge)}</span></p>`;
+            
+            document.getElementById('add-more-diners-btn').style.display = dinersOrdered < totalDiners ? 'inline-block' : 'none';
             summaryDinerCountInput.value = totalDiners;
             showView('summary-view');
         }
 
-        function startNextDiner() {
-            if (dinersOrdered < totalDiners) {
-                dinersOrdered++;
-                document.getElementById('ordering-person-title').textContent = `為第 ${dinersOrdered} 位顧客點餐`;
-                document.getElementById('ordering-hero-image-container').innerHTML = ''; // Clear previous hero image
-                setOptionsContainer.innerHTML = ''; // Clear previous options
-                alacarteSection.innerHTML = ''; // Clear previous alacarte
-                editingOrderId = null;
-                showView('set-selection-view');
+        function handleOrderSubmission(e) {
+            e.preventDefault();
+            const selections = getFormData(e.target);
+            const formType = e.target.dataset.formType;
+            let order;
+
+            if (formType === 'single') {
+                const price = +e.target.querySelector('[name="mainCourse"]:checked').dataset.price + +e.target.querySelector('[name="sideDish"]:checked').dataset.price;
+                order = { type: 'single', name: menuData.singleSet.name, diners: 1, selections, price };
             } else {
-                renderSummary();
+                order = { type: 'double', name: menuData.doubleSet.name, diners: 2, selections, price: menuData.doubleSet.basePrice };
             }
+
+            if (editingOrderId) {
+                const index = allOrders.findIndex(o => o.id === editingOrderId);
+                dinersOrdered += order.diners - allOrders[index].diners;
+                allOrders[index] = { ...allOrders[index], ...order };
+                editingOrderId = null;
+            } else {
+                order.id = Date.now();
+                order.personLabel = order.diners > 1 ? `第 ${dinersOrdered + 1} & ${dinersOrdered + 2} 位顧客` : `第 ${dinersOrdered + 1} 位顧客`;
+                allOrders.push(order);
+                dinersOrdered += order.diners;
+            }
+            
+            if (dinersOrdered >= totalDiners) renderSummary();
+            else startNextDiner();
+        }
+
+        function startNextDiner() {
+            editingOrderId = null;
+            document.getElementById('person-title').textContent = `為第 ${dinersOrdered + 1} 位顧客點餐 ( ${dinersOrdered} / ${totalDiners} 位已點)`;
+            const doubleSetChoice = document.querySelector('.set-choice-btn[data-set-type="double"]');
+            const canSelectDouble = totalDiners - dinersOrdered >= 2;
+            doubleSetChoice.style.opacity = canSelectDouble ? '1' : '0.5';
+            doubleSetChoice.style.pointerEvents = canSelectDouble ? 'auto' : 'none';
+            showView('set-selection-view');
         }
 
         function editOrder(orderId) {
             editingOrderId = orderId;
-            const orderToEdit = allOrders.find(order => order.id === orderId);
-            if (!orderToEdit) return;
-
-            document.getElementById('ordering-person-title').textContent = `編輯訂單 #${orderId}`;
-
+            const orderToEdit = allOrders.find(o => o.id === orderId);
+            document.getElementById('ordering-person-title').textContent = `修改 ${orderToEdit.personLabel} 的餐點`;
+            
+            const isDouble = orderToEdit.type === 'double';
             const heroContainer = document.getElementById('ordering-hero-image-container');
-            if (orderToEdit.type === 'double') {
-                 heroContainer.innerHTML = `
+            if (isDouble) {
+                heroContainer.innerHTML = `
                     <div class="hero-block bg-stone-700">
                         <h2 class="text-3xl font-bold">雙人總督套餐</h2>
                     </div>
@@ -602,15 +696,3 @@
 </body>
 </html>
 
-
-(()=>{var qv=Object.create;var Hi=Object.defineProperty;var $v=Object.getOwnPropertyDescriptor;var Lv=Object.getOwnPropertyNames;var Mv=Object.getPrototypeOf,Nv=Object.prototype.hasOwnProperty;var df=r=>Hi(r,"__esModule",{value:!0});var hf=r=>{if(typeof require!="undefined")return require(r);throw new Error(\'Dynamic require of "\'+r+\'" is not supported\')};var P=(r,e)=>()=>(r&&(e=r(r=0)),e);var x=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),Ge=(r,e)=>{df(r);for(var t in e)Hi(r,t,{get:e[t],enumerable:!0})},Bv=(r,e,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of Lv(e))!Nv.call(r,i)&&i!=="default"&&Hi(r,i,{get:()=>e[i],enumerable:!(t=$v(e,i))||t.enumerable});return r},pe=r=>Bv(df(Hi(r!=null?qv(Mv(r)):{},"default",r&&r.__esModule&&"default"in r?{get:()=>r.default,enumerable:!0}:{value:r,enumerable:!0})),r);var m,u=P(()=>{m={platform:"",env:{},versions:{node:"14.17.6"}}});var Fv,be,ft=P(()=>{u();Fv=0,be={readFileSync:r=>self[r]||"",statSync:()=>({mtimeMs:Fv++}),promises:{readFile:r=>Promise.resolve(self[r]||"")}}});var Fs=x((oP,gf)=>{u();"use strict";var mf=class{constructor(e={}){if(!(e.maxSize&&e.maxSize>0))throw new TypeError("`maxSize` must be a number greater than 0");if(typeof e.maxAge=="number"&&e.maxAge===0)throw new TypeError("`maxAge` must be a number greater than 0");this.maxSize=e.maxSize,this.maxAge=e.maxAge||1/0,this.onEviction=e.onEviction,this.cache=new Map,this.oldCache=new Map,this._size=0}_emitEvictions(e){if(typeof this.onEviction=="function")for(let[t,i]of e)this.onEviction(t,i.value)}_deleteIfExpired(e,t){return typeof t.expiry=="number"&&t.expiry<=Date.now()?(typeof this.onEviction=="function"&&this.onEviction(e,t.value),this.delete(e)):!1}_getOrDeleteIfExpired(e,t){if(this._deleteIfExpired(e,t)===!1)return t.value}_getItemValue(e,t){return t.expiry?this._getOrDeleteIfExpired(e,t):t.value}_peek(e,t){let i=t.get(e);return this._getItemValue(e,i)}_set(e,t){this.cache.set(e,t),this._size++,this._size>=this.maxSize&&(this._size=0,this._emitEvictions(this.oldCache),this.oldCache=this.cache,this.cache=new Map)}_moveToRecent(e,t){this.oldCache.delete(e),this._set(e,t)}*_entriesAscending(){for(let e of this.oldCache){let[t,i]=e;this.cache.has(t)||this._deleteIfExpired(t,i)===!1&&(yield e)}for(let e of this.cache){let[t,i]=e;this._deleteIfExpired(t,i)===!1&&(yield e)}}get(e){if(this.cache.has(e)){let t=this.cache.get(e);return this._getItemValue(e,t)}if(this.oldCache.has(e)){let t=this.oldCache.get(e);if(this._deleteIfExpired(e,t)===!1)return this._moveToRecent(e,t),t.value}}set(e,t,{maxAge:i=this.maxAge===1/0?void 0:Date.now()+this.maxAge}={}){this.cache.has(e)?this.cache.set(e,{value:t,maxAge:i}):this._set(e,{value:t,expiry:i})}has(e){return this.cache.has(e)?!this._deleteIfExpired(e,this.cache.get(e)):this.oldCache.has(e)?!this._deleteIfExpired(e,this.oldCache.get(e)):!1}peek(e){if(this.cache.has(e))return this._peek(e,this.cache);if(this.oldCache.has(e))return this._peek(e,this.oldCache)}delete(e){let t=this.cache.delete(e);return t&&this._size--,this.oldCache.delete(e)||t}clear(){this.cache.clear(),this.oldCache.clear(),this._size=0}resize(e){if(!(e&&e>0))throw new TypeError("`maxSize` must be a number greater than 0");let t=[...this._entriesAscending()],i=t.length-e;i<0?(this.cache=new Map(t),this.oldCache=new Map,this._size=t.length):(i>0&&this._emitEvictions(t.slice(0,i)),this.oldCache=new Map(t.slice(i)),this.cache=new Map,this._size=0),this.maxSize=e}*keys(){for(let[e]of this)yield e}*values(){for(let[,e]of this)yield e}*[Symbol.iterator](){for(let e of this.cache){let[t,i]=e;this._deleteIfExpired(t,i)===!1&&(yield[t,i.value])}for(let e of this.oldCache){let[t,i]=e;this.cache.has(t)||this._deleteIfExpired(t,i)===!1&&(yield[t,i.value])}}*entriesDescending(){let e=[...this.cache];for(let t=e.length-1;t>=0;--t){let i=e[t],[n,s]=i;this._deleteIfExpired(n,s)===!1&&(yield[n,s.value])}e=[...this.oldCache];for(let t=e.length-1;t>=0;--t){let i=e[t],[n,s]=i;this.cache.has(n)||this._deleteIfExpired(n,s)===!1&&(yield[n,s.value])}}*entriesAscending(){for(let[e,t]of this._entriesAscending())yield[e,t.value]}get size(){if(!this._size)return this.oldCache.size;let e=0;for(let t of this.oldCache.keys())this.cache.has(t)||e++;return Math.min(this._size+e,this.maxSize)}};gf.exports=mf});var yf,bf=P(()=>{u();yf=r=>r&&r._hash});function Wi(r){return yf(r,{ignoreUnknown:!0})}var wf=P(()=>{u();bf()});function xt(r){if(r=`${r}`,r==="0")return"0";if(/^[+-]?(\d+|\d*\.\d+)(e[+-]?\d+)?(%|\w+)?$/.test(r))return r.replace(/^[+-]?/,t=>t==="-"?"":"-");let e=["var","calc","min","max","clamp"];for(let t of e)if(r.includes(`${t}(`))return`calc(${r} * -1)`}var Gi=P(()=>{u()});var vf,xf=P(()=>{u();vf=["preflight","container","accessibility","pointerEvents","visibility","position","inset","isolation","zIndex","order","gridColumn","gridColumnStart","gridColumnEnd","gridRow","gridRowStart","gridRowEnd","float","clear","margin","boxSizing","lineClamp","display","aspectRatio","size","height","maxHeight","minHeight","width","minWidth","maxWidth","flex","flexShrink","flexGrow","flexBasis","tableLayout","captionSide","borderCollapse","borderSpacing","transformOrigin","translate","rotate","skew","scale","transform","animation","cursor","touchAction","userSelect","resize","scrollSnapType","scrollSnapAlign","scrollSnapStop","scrollMargin","scrollPadding","listStylePosition","listStyleType","listStyleImage","appearance","columns","breakBefore","breakInside","breakAfter","gridAutoColumns","gridAutoFlow","gridAutoRows","gridTemplateColumns","gridTemplateRows","flexDirection","flexWrap","placeContent","placeItems","alignContent","alignItems","justifyContent","justifyItems","gap","space","divideWidth","divideStyle","divideColor","divideOpacity","placeSelf","alignSelf","justifySelf","overflow","overscrollBehavior","scrollBehavior","textOverflow","hyphens","whitespace","textWrap","wordBreak","borderRadius","borderWidth","borderStyle","borderColor","borderOpacity","backgroundColor","backgroundOpacity","backgroundImage","gradientColorStops","boxDecorationBreak","backgroundSize","backgroundAttachment","backgroundClip","backgroundPosition","backgroundRepeat","backgroundOrigin","fill","stroke","strokeWidth","objectFit","objectPosition","padding","textAlign","textIndent","verticalAlign","fontFamily","fontSize","fontWeight","textTransform","fontStyle","fontVariantNumeric","lineHeight","letterSpacing","textColor","textOpacity","textDecoration","textDecorationColor","textDecorationStyle","textDecorationThickness","textUnderlineOffset","fontSmoothing","placeholderColor","placeholderOpacity","caretColor","accentColor","opacity","backgroundBlendMode","mixBlendMode","boxShadow","boxShadowColor","outlineStyle","outlineWidth","outlineOffset","outlineColor","ringWidth","ringColor","ringOpacity","ringOffsetWidth","ringOffsetColor","blur","brightness","contrast","dropShadow","grayscale","hueRotate","invert","saturate","sepia","filter","backdropBlur","backdropBrightness","backdropContrast","backdropGrayscale","backdropHueRotate","backdropInvert","backdropOpacity","backdropSaturate","backdropSepia","backdropFilter","transitionProperty","transitionDelay","transitionDuration","transitionTimingFunction","willChange","contain","content","forcedColorAdjust"]});function kf(r,e){return r===void 0?e:Array.isArray(r)?r:[...new Set(e.filter(i=>r!==!1&&r[i]!==!1).concat(Object.keys(r).filter(i=>r[i]!==!1)))]}var Sf=P(()=>{u()});var Af={};Ge(Af,{default:()=>Qe});var Qe,Qi=P(()=>{u();Qe=new Proxy({},{get:()=>String})});function js(r,e,t){typeof m!="undefined"&&m.env.JEST_WORKER_ID||t&&Cf.has(t)||(t&&Cf.add(t),console.warn(""),e.forEach(i=>console.warn(r,"-",i)))}function zs(r){return Qe.dim(r)}var Cf,G,Be=P(()=>{u();Qi();Cf=new Set;G={info(r,e){js(Qe.bold(Qe.cyan("info")),...Array.isArray(r)?[r]:[e,r])},warn(r,e){["content-problems"].includes(r)||js(Qe.bold(Qe.yellow("warn")),...Array.isArray(r)?[r]:[e,r])},risk(r,e){js(Qe.bold(Qe.magenta("risk")),...Array.isArray(r)?[r]:[e,r])}}});var _f={};Ge(_f,{default:()=>Us});function qr({version:r,from:e,to:t}){G.warn(`${e}-color-renamed`,[`As of Tailwind CSS ${r}, \`${e}\` has been renamed to \`${t}\`.`,"Update your configuration file to silence this warning."])}var Us,Vs=P(()=>{u();Be();Us={inherit:"inherit",current:"currentColor",transparent:"transparent",black:"#000",white:"#fff",slate:{50:"#f8fafc",100:"#f1f5f9",200:"#e2e8f0",300:"#cbd5e1",400:"#94a3b8",500:"#64748b",600:"#475569",700:"#334155",800:"#1e293b",900:"#0f172a",950:"#020617"},gray:{50:"#f9fafb",100:"#f3f4f6",200:"#e5e7eb",300:"#d1d5db",400:"#9ca3af",500:"#6b7280",600:"#4b5563",700:"#374151",800:"#1f2937",900:"#111827",950:"#030712"},zinc:{50:"#fafafa",100:"#f4f4f5",200:"#e4e4e7",300:"#d4d4d8",400:"#a1a1aa",500:"#71717a",600:"#52525b",700:"#3f3f46",800:"#27272a",900:"#18181b",950:"#09090b"},neutral:{50:"#fafafa",100:"#f5f5f5",200:"#e5e5e5",300:"#d4d4d4",400:"#a3a3a3",500:"#737373",600:"#525252",700:"#404040",800:"#262626",900:"#171717",950:"#0a0a0a"},stone:{50:"#fafaf9",100:"#f5f5f4",200:"#e7e5e4",300:"#d6d3d1",400:"#a8a29e",500:"#78716c",600:"#57534e",700:"#44403c",800:"#292524",900:"#1c1917",950:"#0c0a09"},red:{50:"#fef2f2",100:"#fee2e2",200:"#fecaca",300:"#fca5a5",400:"#f87171",500:"#ef4444",600:"#dc2626",700:"#b91c1c",800:"#991b1b",900:"#7f1d1d",950:"#450a0a"},orange:{50:"#fff7ed",100:"#ffedd5",200:"#fed7aa",300:"#fdba74",400:"#fb923c",500:"#f97316",600:"#ea580c",700:"#c2410c",800:"#9a3412",900:"#7c2d12",950:"#431407"},amber:{50:"#fffbeb",100:"#fef3c7",200:"#fde68a",300:"#fcd34d",400:"#fbbf24",500:"#f59e0b",600:"#d97706",700:"#b45309",800:"#92400e",900:"#78350f",950:"#451a03"},yellow:{50:"#fefce8",100:"#fef9c3",200:"#fef08a",300:"#fde047",400:"#facc15",500:"#eab308",600:"#ca8a04",700:"#a16207",800:"#854d0e",900:"#713f12",950:"#422006"},lime:{50:"#f7fee7",100:"#ecfccb",200:"#d9f99d",300:"#bef264",400:"#a3e635",500:"#84cc16",600:"#65a30d",700:"#4d7c0f",800:"#3f6212",900:"#365314",950:"#1a2e05"},green:{50:"#f0fdf4",100:"#dcfce7",200:"#bbf7d0",300:"#86efac",400:"#4ade80",500:"#22c55e",600:"#16a34a",700:"#15803d",800:"#166534",900:"#14532d",950:"#052e16"},emerald:{50:"#ecfdf5",100:"#d1fae5",200:"#a7f3d0",300:"#6ee7b7",400:"#34d399",500:"#10b981",600:"#059669",700:"#047857",800:"#065f46",900:"#064e3b",950:"#022c22"},teal:{50:"#f0fdfa",100:"#ccfbf1",200:"#99f6e4",300:"#5eead4",400:"#2dd4bf",500:"#14b8a6",600:"#0d9488",700:"#0f766e",800:"#115e59",900:"#134e4a",950:"#042f2e"},cyan:{50:"#ecfeff",100:"#cffafe",200:"#a5f3fc",300:"#67e8f9",400:"#22d3ee",500:"#06b6d4",600:"#0891b2",700:"#0e7490",800:"#155e75",900:"#164e63",950:"#083344"},sky:{50:"#f0f9ff",100:"#e0f2fe",200:"#bae6fd",300:"#7dd3fc",400:"#38bdf8",500:"#0ea5e9",600:"#0284c7",700:"#0369a1",800:"#075985",900:"#0c4a6e",950:"#082f49"},blue:{50:"#eff6ff",100:"#dbeafe",200:"#bfdbfe",300:"#93c5fd",400:"#60a5fa",500:"#3b82f6",600:"#2563eb",700:"#1d4ed8",800:"#1e40af",900:"#1e3a8a",950:"#172554"},indigo:{50:"#eef2ff",100:"#e0e7ff",200:"#c7d2fe",300:"#a5b4fc",400:"#818cf8",500:"#6366f1",600:"#4f46e5",700:"#4338ca",800:"#3730a3",900:"#312e81",950:"#1e1b4b"},violet:{50:"#f5f3ff",100:"#ede9fe",200:"#ddd6fe",300:"#c4b5fd",400:"#a78bfa",500:"#8b5cf6",600:"#7c3aed",700:"#6d28d9",800:"#5b21b6",900:"#4c1d95",950:"#2e1065"},purple:{50:"#faf5ff",100:"#f3e8ff",200:"#e9d5ff",300:"#d8b4fe",400:"#c084fc",500:"#a855f7",600:"#9333ea",700:"#7e22ce",800:"#6b21a8",900:"#581c87",950:"#3b0764"},fuchsia:{50:"#fdf4ff",100:"#fae8ff",200:"#f5d0fe",300:"#f0abfc",400:"#e879f9",500:"#d946ef",600:"#c026d3",700:"#a21caf",800:"#86198f",900:"#701a75",950:"#4a044e"},pink:{50:"#fdf2f8",100:"#fce7f3",200:"#fbcfe8",300:"#f9a8d4",400:"#f472b6",500:"#ec4899",600:"#db2777",700:"#be185d",800:"#9d174d",900:"#831843",950:"#500724"},rose:{50:"#fff1f2",100:"#ffe4e6",200:"#fecdd3",300:"#fda4af",400:"#fb7185",500:"#f43f5e",600:"#e11d48",700:"#be123c",800:"#9f1239",900:"#881337",950:"#4c0519"},get lightBlue(){return qr({version:"v2.2",from:"lightBlue",to:"sky"}),this.sky},get warmGray(){return qr({version:"v3.0",from:"warmGray",to:"stone"}),this.stone},get trueGray(){return qr({version:"v3.0",from:"trueGray",to:"neutral"}),this.neutral},get coolGray(){return qr({version:"v3.0",from:"coolGray",to:"gray"}),this.gray},get blueGray(){return qr({version:"v3.0",from:"blueGray",to:"slate"}),this.slate}}});function Hs(r,...e){for(let t of e){for(let i in t)r?.hasOwnProperty?.(i)||(r[i]=t[i]);for(let i of Object.getOwnPropertySymbols(t))r?.hasOwnProperty?.(i)||(r[i]=t[i])}return r}var Ef=P(()=>{u()});function kt(r){if(Array.isArray(r))return r;let e=r.split("[").length-1,t=r.split("]").length-1;if(e!==t)throw new Error(`Path is invalid. Has unbalanced brackets: ${r}`);return r.split(/\.(?![^\[]*\])|[\[\]]/g).filter(Boolean)}var Yi=P(()=>{u()});function we(r,e){return Ki.future.includes(e)?r.future==="all"||(r?.future?.[e]??Of[e]??!1):Ki.experimental.includes(e)?r.experimental==="all"||(r?.experimental?.[e]??Of[e]??!1):!1}function Tf(r){return r.experimental==="all"?Ki.experimental:Object.keys(r?.experimental??{}).filter(e=>Ki.experimental.includes(e)&&r.experimental[e])}function Rf(r){if(m.env.JEST_WORKER_ID===void 0&&Tf(r).length>0){let e=Tf(r).map(t=>Qe.yellow(t)).join(", ");G.warn("experimental-flags-enabled",[`You have enabled experimental features: ${e}`,"Experimental features in Tailwind CSS are not covered by semver, may introduce breaking changes, and can change at any time."])}}var Of,Ki,ct=P(()=>{u();Qi();Be();Of={optimizeUniversalDefaults:!1,generalizedModifiers:!0,disableColorOpacityUtilitiesByDefault:!1,relativeContentPathsByDefault:!1},Ki={future:["hoverOnlyWhenSupported","respectDefaultRingColorOpacity","disableColorOpacityUtilitiesByDefault","relativeContentPathsByDefault"],experimental:["optimizeUniversalDefaults","generalizedModifiers"]}});function Pf(r){(()=>{if(r.purge||!r.content||!Array.isArray(r.content)&&!(typeof r.content=="object"&&r.content!==null))return!1;if(Array.isArray(r.content))return r.content.every(t=>typeof t=="string"?!0:!(typeof t?.raw!="string"||t?.extension&&typeof t?.extension!="string"));if(typeof r.content=="object"&&r.content!==null){if(Object.keys(r.content).some(t=>!["files","relative","extract","transform"].includes(t)))return!1;if(Array.isArray(r.content.files)){if(!r.content.files.every(t=>typeof t=="string"?!0:!(typeof t?.raw!="string"||t?.extension&&typeof t?.extension!="string")))return!1;if(typeof r.content.extract=="object"){for(let t of Object.values(r.content.extract))if(typeof t!="function")return!1}else if(!(r.content.extract===void 0||typeof r.content.extract=="function"))return!1;if(typeof r.content.transform=="object"){for(let t of Object.values(r.content.transform))if(typeof t!="function")return!1}else if(!(r.content.transform===void 0||typeof r.content.transform=="function"))return!1;if(typeof r.content.relative!="boolean"&&typeof r.content.relative!="undefined")return!1}return!0}return!1})()||G.warn("purge-deprecation",["The `purge`/`content` options have changed in Tailwind CSS v3.0.","Update your configuration file to eliminate this warning.","https://tailwindcss.com/docs/upgrade-guide#configure-content-sources"]),r.safelist=(()=>{let{content:t,purge:i,safelist:n}=r;return Array.isArray(n)?n:Array.isArray(t?.safelist)?t.safelist:Array.isArray(i?.safelist)?i.safelist:Array.isArray(i?.options?.safelist)?i.options.safelist:[]})(),r.blocklist=(()=>{let{blocklist:t}=r;if(Array.isArray(t)){if(t.every(i=>typeof i=="string"))return t;G.warn("blocklist-invalid",["The `blocklist` option must be an array of strings.","https://tailwindcss.com/docs/content-configuration#discarding-classes"])}return[]})(),typeof r.prefix=="function"?(G.warn("prefix-function",["As of Tailwind CSS v3.0, `prefix` cannot be a function.","Update `prefix` in your configuration to be a string to eliminate this warning.","https://tailwindcss.com/docs/upgrade-guide#prefix-cannot-be-a-function"]),r.prefix=""):r.prefix=r.prefix??"",r.content={relative:(()=>{let{content:t}=r;return t?.relative?t.relative:we(r,"relativeContentPathsByDefault")})(),files:(()=>{let{content:t,purge:i}=r;return Array.isArray(i)?i:Array.isArray(i?.content)?i.content:Array.isArray(t)?t:Array.isArray(t?.content)?t.content:Array.isArray(t?.files)?t.files:[]})(),extract:(()=>{let t=(()=>r.purge?.extract?r.purge.extract:r.content?.extract?r.content.extract:r.purge?.extract?.DEFAULT?r.purge.extract.DEFAULT:r.content?.extra
-(Content truncated due to size limit. Use page ranges or line ranges to read remaining content)
-</style>
-
-(()=>{var qv=Object.create;var Hi=Object.defineProperty;var $v=Object.getOwnPropertyDescriptor;var Lv=Object.getOwnPropertyNames;var Mv=Object.getPrototypeOf,Nv=Object.prototype.hasOwnProperty;var df=r=>Hi(r,"__esModule",{value:!0});var hf=r=>{if(typeof require!="undefined")return require(r);throw new Error(\'Dynamic require of "\'+r+\'" is not supported\')};var P=(r,e)=>()=>(r&&(e=r(r=0)),e);var x=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),Ge=(r,e)=>{df(r);for(var t in e)Hi(r,t,{get:e[t],enumerable:!0})},Bv=(r,e,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of Lv(e))!Nv.call(r,i)&&i!=="default"&&Hi(r,i,{get:()=>e[i],enumerable:!(t=$v(e,i))||t.enumerable});return r},pe=r=>Bv(df(Hi(r!=null?qv(Mv(r)):{},"default",r&&r.__esModule&&"default"in r?{get:()=>r.default,enumerable:!0}:{value:r,enumerable:!0})),r);var m,u=P(()=>{m={platform:"",env:{},versions:{node:"14.17.6"}}});var Fv,be,ft=P(()=>{u();Fv=0,be={readFileSync:r=>self[r]||"",statSync:()=>({mtimeMs:Fv++}),promises:{readFile:r=>Promise.resolve(self[r]||"")}}});var Fs=x((oP,gf)=>{u();"use strict";var mf=class{constructor(e={}){if(!(e.maxSize&&e.maxSize>0))throw new TypeError("`maxSize` must be a number greater than 0");if(typeof e.maxAge=="number"&&e.maxAge===0)throw new TypeError("`maxAge` must be a number greater than 0");this.maxSize=e.maxSize,this.maxAge=e.maxAge||1/0,this.onEviction=e.onEviction,this.cache=new Map,this.oldCache=new Map,this._size=0}_emitEvictions(e){if(typeof this.onEviction=="function")for(let[t,i]of e)this.onEviction(t,i.value)}_deleteIfExpired(e,t){return typeof t.expiry=="number"&&t.expiry<=Date.now()?(typeof this.onEviction=="function"&&this.onEviction(e,t.value),this.delete(e)):!1}_getOrDeleteIfExpired(e,t){if(this._deleteIfExpired(e,t)===!1)return t.value}_getItemValue(e,t){return t.expiry?this._getOrDeleteIfExpired(e,t):t.value}_peek(e,t){let i=t.get(e);return this._getItemValue(e,i)}_set(e,t){this.cache.set(e,t),this._size++,this._size>=this.maxSize&&(this._size=0,this._emitEvictions(this.oldCache),this.oldCache=this.cache,this.cache=new Map)}_moveToRecent(e,t){this.oldCache.delete(e),this._set(e,t)}*_entriesAscending(){for(let e of this.oldCache){let[t,i]=e;this.cache.has(t)||this._deleteIfExpired(t,i)===!1&&(yield e)}for(let e of this.cache){let[t,i]=e;this._deleteIfExpired(t,i)===!1&&(yield e)}}get(e){if(this.cache.has(e)){let t=this.cache.get(e);return this._getItemValue(e,t)}if(this.oldCache.has(e)){let t=this.oldCache.get(e);if(this._deleteIfExpired(e,t)===!1)return this._moveToRecent(e,t),t.value}}set(e,t,{maxAge:i=this.maxAge===1/0?void 0:Date.now()+this.maxAge}={}){this.cache.has(e)?this.cache.set(e,{value:t,maxAge:i}):this._set(e,{value:t,expiry:i})}has(e){return this.cache.has(e)?!this._deleteIfExpired(e,this.cache.get(e)):this.oldCache.has(e)?!this._deleteIfExpired(e,this.oldCache.get(e)):!1}peek(e){if(this.cache.has(e))return this._peek(e,this.cache);if(this.oldCache.has(e))return this._peek(e,this.oldCache)}delete(e){let t=this.cache.delete(e);return t&&this._size--,this.oldCache.delete(e)||t}clear(){this.cache.clear(),this.oldCache.clear(),this._size=0}resize(e){if(!(e&&e>0))throw new TypeError("`maxSize` must be a number greater than 0");let t=[...this._entriesAscending()],i=t.length-e;i<0?(this.cache=new Map(t),this.oldCache=new Map,this._size=t.length):(i>0&&this._emitEvictions(t.slice(0,i)),this.oldCache=new Map(t.slice(i)),this.cache=new Map,this._size=0),this.maxSize=e}*keys(){for(let[e]of this)yield e}*values(){for(let[,e]of this)yield e}*[Symbol.iterator](){for(let e of this.cache){let[t,i]=e;this._deleteIfExpired(t,i)===!1&&(yield[t,i.value])}for(let e of this.oldCache){let[t,i]=e;this.cache.has(t)||this._deleteIfExpired(t,i)===!1&&(yield[t,i.value])}}*entriesDescending(){let e=[...this.cache];for(let t=e.length-1;t>=0;--t){let i=e[t],[n,s]=i;this._deleteIfExpired(n,s)===!1&&(yield[n,s.value])}e=[...this.oldCache];for(let t=e.length-1;t>=0;--t){let i=e[t],[n,s]=i;this.cache.has(n)||this._deleteIfExpired(n,s)===!1&&(yield[n,s.value])}}*entriesAscending(){for(let[e,t]of this._entriesAscending())yield[e,t.value]}get size(){if(!this._size)return this.oldCache.size;let e=0;for(let t of this.oldCache.keys())this.cache.has(t)||e++;return Math.min(this._size+e,this.maxSize)}};gf.exports=mf});var yf,bf=P(()=>{u();yf=r=>r&&r._hash});function Wi(r){return yf(r,{ignoreUnknown:!0})}var wf=P(()=>{u();bf()});function xt(r){if(r=`${r}`,r==="0")return"0";if(/^[+-]?(\d+|\d*\.\d+)(e[+-]?\d+)?(%|\w+)?$/.test(r))return r.replace(/^[+-]?/,t=>t==="-"?"":"-");let e=["var","calc","min","max","clamp"];for(let t of e)if(r.includes(`${t}(`))return`calc(${r} * -1)`}var Gi=P(()=>{u()});var vf,xf=P(()=>{u();vf=["preflight","container","accessibility","pointerEvents","visibility","position","inset","isolation","zIndex","order","gridColumn","gridColumnStart","gridColumnEnd","gridRow","gridRowStart","gridRowEnd","float","clear","margin","boxSizing","lineClamp","display","aspectRatio","size","height","maxHeight","minHeight","width","minWidth","maxWidth","flex","flexShrink","flexGrow","flexBasis","tableLayout","captionSide","borderCollapse","borderSpacing","transformOrigin","translate","rotate","skew","scale","transform","animation","cursor","touchAction","userSelect","resize","scrollSnapType","scrollSnapAlign","scrollSnapStop","scrollMargin","scrollPadding","listStylePosition","listStyleType","listStyleImage","appearance","columns","breakBefore","breakInside","breakAfter","gridAutoColumns","gridAutoFlow","gridAutoRows","gridTemplateColumns","gridTemplateRows","flexDirection","flexWrap","placeContent","placeItems","alignContent","alignItems","justifyContent","justifyItems","gap","space","divideWidth","divideStyle","divideColor","divideOpacity","placeSelf","alignSelf","justifySelf","overflow","overscrollBehavior","scrollBehavior","textOverflow","hyphens","whitespace","textWrap","wordBreak","borderRadius","borderWidth","borderStyle","borderColor","borderOpacity","backgroundColor","backgroundOpacity","backgroundImage","gradientColorStops","boxDecorationBreak","backgroundSize","backgroundAttachment","backgroundClip","backgroundPosition","backgroundRepeat","backgroundOrigin","fill","stroke","strokeWidth","objectFit","objectPosition","padding","textAlign","textIndent","verticalAlign","fontFamily","fontSize","fontWeight","textTransform","fontStyle","fontVariantNumeric","lineHeight","letterSpacing","textColor","textOpacity","textDecoration","textDecorationColor","textDecorationStyle","textDecorationThickness","textUnderlineOffset","fontSmoothing","placeholderColor","placeholderOpacity","caretColor","accentColor","opacity","backgroundBlendMode","mixBlendMode","boxShadow","boxShadowColor","outlineStyle","outlineWidth","outlineOffset","outlineColor","ringWidth","ringColor","ringOpacity","ringOffsetWidth","ringOffsetColor","blur","brightness","contrast","dropShadow","grayscale","hueRotate","invert","saturate","sepia","filter","backdropBlur","backdropBrightness","backdropContrast","backdropGrayscale","backdropHueRotate","backdropInvert","backdropOpacity","backdropSaturate","backdropSepia","backdropFilter","transitionProperty","transitionDelay","transitionDuration","transitionTimingFunction","willChange","contain","content","forcedColorAdjust"]});function kf(r,e){return r===void 0?e:Array.isArray(r)?r:[...new Set(e.filter(i=>r!==!1&&r[i]!==!1).concat(Object.keys(r).filter(i=>r[i]!==!1)))]}var Sf=P(()=>{u()});var Af={};Ge(Af,{default:()=>Qe});var Qe,Qi=P(()=>{u();Qe=new Proxy({},{get:()=>String})});function js(r,e,t){typeof m!="undefined"&&m.env.JEST_WORKER_ID||t&&Cf.has(t)||(t&&Cf.add(t),console.warn(""),e.forEach(i=>console.warn(r,"-",i)))}function zs(r){return Qe.dim(r)}var Cf,G,Be=P(()=>{u();Qi();Cf=new Set;G={info(r,e){js(Qe.bold(Qe.cyan("info")),...Array.isArray(r)?[r]:[e,r])},warn(r,e){["content-problems"].includes(r)||js(Qe.bold(Qe.yellow("warn")),...Array.isArray(r)?[r]:[e,r])},risk(r,e){js(Qe.bold(Qe.magenta("risk")),...Array.isArray(r)?[r]:[e,r])}}});var _f={};Ge(_f,{default:()=>Us});function qr({version:r,from:e,to:t}){G.warn(`${e}-color-renamed`,[`As of Tailwind CSS ${r}, \`${e}\` has been renamed to \`${t}\`.`,"Update your configuration file to silence this warning."])}var Us,Vs=P(()=>{u();Be();Us={inherit:"inherit",current:"currentColor",transparent:"transparent",black:"#000",white:"#fff",slate:{50:"#f8fafc",100:"#f1f5f9",200:"#e2e8f0",300:"#cbd5e1",400:"#94a3b8",500:"#64748b",600:"#475569",700:"#334155",800:"#1e293b",900:"#0f172a",950:"#020617"},gray:{50:"#f9fafb",100:"#f3f4f6",200:"#e5e7eb",300:"#d1d5db",400:"#9ca3af",500:"#6b7280",600:"#4b5563",700:"#374151",800:"#1f2937",900:"#111827",950:"#030712"},zinc:{50:"#fafafa",100:"#f4f4f5",200:"#e4e4e7",300:"#d4d4d8",400:"#a1a1aa",500:"#71717a",600:"#52525b",700:"#3f3f46",800:"#27272a",900:"#18181b",950:"#09090b"},neutral:{50:"#fafafa",100:"#f5f5f5",200:"#e5e5e5",300:"#d4d4d4",400:"#a3a3a3",500:"#737373",600:"#525252",700:"#404040",800:"#262626",900:"#171717",950:"#0a0a0a"},stone:{50:"#fafaf9",100:"#f5f5f4",200:"#e7e5e4",300:"#d6d3d1",400:"#a8a29e",500:"#78716c",600:"#57534e",700:"#44403c",800:"#292524",900:"#1c1917",950:"#0c0a09"},red:{50:"#fef2f2",100:"#fee2e2",200:"#fecaca",300:"#fca5a5",400:"#f87171",500:"#ef4444",600:"#dc2626",700:"#b91c1c",800:"#991b1b",900:"#7f1d1d",950:"#450a0a"},orange:{50:"#fff7ed",100:"#ffedd5",200:"#fed7aa",300:"#fdba74",400:"#fb923c",500:"#f97316",600:"#ea580c",700:"#c2410c",800:"#9a3412",900:"#7c2d12",950:"#431407"},amber:{50:"#fffbeb",100:"#fef3c7",200:"#fde68a",300:"#fcd34d",400:"#fbbf24",500:"#f59e0b",600:"#d97706",700:"#b45309",800:"#92400e",900:"#78350f",950:"#451a03"},yellow:{50:"#fefce8",100:"#fef9c3",200:"#fef08a",300:"#fde047",400:"#facc15",500:"#eab308",600:"#ca8a04",700:"#a16207",800:"#854d0e",900:"#713f12",950:"#422006"},lime:{50:"#f7fee7",100:"#ecfccb",200:"#d9f99d",300:"#bef264",400:"#a3e635",500:"#84cc16",600:"#65a30d",700:"#4d7c0f",800:"#3f6212",900:"#365314",950:"#1a2e05"},green:{50:"#f0fdf4",100:"#dcfce7",200:"#bbf7d0",300:"#86efac",400:"#4ade80",500:"#22c55e",600:"#16a34a",700:"#15803d",800:"#166534",900:"#14532d",950:"#052e16"},emerald:{50:"#ecfdf5",100:"#d1fae5",200:"#a7f3d0",300:"#6ee7b7",400:"#34d399",500:"#10b981",600:"#059669",700:"#047857",800:"#065f46",900:"#064e3b",950:"#022c22"},teal:{50:"#f0fdfa",100:"#ccfbf1",200:"#99f6e4",300:"#5eead4",400:"#2dd4bf",500:"#14b8a6",600:"#0d9488",700:"#0f766e",800:"#115e59",900:"#134e4a",950:"#042f2e"},cyan:{50:"#ecfeff",100:"#cffafe",200:"#a5f3fc",300:"#67e8f9",400:"#22d3ee",500:"#06b6d4",600:"#0891b2",700:"#0e7490",800:"#155e75",900:"#164e63",950:"#083344"},sky:{50:"#f0f9ff",100:"#e0f2fe",200:"#bae6fd",300:"#7dd3fc",400:"#38bdf8",500:"#0ea5e9",600:"#0284c7",700:"#0369a1",800:"#075985",900:"#0c4a6e",950:"#082f49"},blue:{50:"#eff6ff",100:"#dbeafe",200:"#bfdbfe",300:"#93c5fd",400:"#60a5fa",500:"#3b82f6",600:"#2563eb",700:"#1d4ed8",800:"#1e40af",900:"#1e3a8a",950:"#172554"},indigo:{50:"#eef2ff",100:"#e0e7ff",200:"#c7d2fe",300:"#a5b4fc",400:"#818cf8",500:"#6366f1",600:"#4f46e5",700:"#4338ca",800:"#3730a3",900:"#312e81",950:"#1e1b4b"},violet:{50:"#f5f3ff",100:"#ede9fe",200:"#ddd6fe",300:"#c4b5fd",400:"#a78bfa",500:"#8b5cf6",600:"#7c3aed",700:"#6d28d9",800:"#5b21b6",900:"#4c1d95",950:"#2e1065"},purple:{50:"#faf5ff",100:"#f3e8ff",200:"#e9d5ff",300:"#d8b4fe",400:"#c084fc",500:"#a855f7",600:"#9333ea",700:"#7e22ce",800:"#6b21a8",900:"#581c87",950:"#3b0764"},fuchsia:{50:"#fdf4ff",100:"#fae8ff",200:"#f5d0fe",300:"#f0abfc",400:"#e879f9",500:"#d946ef",600:"#c026d3",700:"#a21caf",800:"#86198f",900:"#701a75",950:"#4a044e"},pink:{50:"#fdf2f8",100:"#fce7f3",200:"#fbcfe8",300:"#f9a8d4",400:"#f472b6",500:"#ec4899",600:"#db2777",700:"#be185d",800:"#9d174d",900:"#831843",950:"#500724"},rose:{50:"#fff1f2",100:"#ffe4e6",200:"#fecdd3",300:"#fda4af",400:"#fb7185",500:"#f43f5e",600:"#e11d48",700:"#be123c",800:"#9f1239",900:"#881337",950:"#4c0519"},get lightBlue(){return qr({version:"v2.2",from:"lightBlue",to:"sky"}),this.sky},get warmGray(){return qr({version:"v3.0",from:"warmGray",to:"stone"}),this.stone},get trueGray(){return qr({version:"v3.0",from:"trueGray",to:"neutral"}),this.neutral},get coolGray(){return qr({version:"v3.0",from:"coolGray",to:"gray"}),this.gray},get blueGray(){return qr({version:"v3.0",from:"blueGray",to:"slate"}),this.slate}}});function Hs(r,...e){for(let t of e){for(let i in t)r?.hasOwnProperty?.(i)||(r[i]=t[i]);for(let i of Object.getOwnPropertySymbols(t))r?.hasOwnProperty?.(i)||(r[i]=t[i])}return r}var Ef=P(()=>{u()});function kt(r){if(Array.isArray(r))return r;let e=r.split("[").length-1,t=r.split("]").length-1;if(e!==t)throw new Error(`Path is invalid. Has unbalanced brackets: ${r}`);return r.split(/\.(?![^\[]*\])|[\[\]]/g).filter(Boolean)}var Yi=P(()=>{u()});function we(r,e){return Ki.future.includes(e)?r.future==="all"||(r?.future?.[e]??Of[e]??!1):Ki.experimental.includes(e)?r.experimental==="all"||(r?.experimental?.[e]??Of[e]??!1):!1}function Tf(r){return r.experimental==="all"?Ki.experimental:Object.keys(r?.experimental??{}).filter(e=>Ki.experimental.includes(e)&&r.experimental[e])}function Rf(r){if(m.env.JEST_WORKER_ID===void 0&&Tf(r).length>0){let e=Tf(r).map(t=>Qe.yellow(t)).join(", ");G.warn("experimental-flags-enabled",[`You have enabled experimental features: ${e}`,"Experimental features in Tailwind CSS are not covered by semver, may introduce breaking changes, and can change at any time."])}}var Of,Ki,ct=P(()=>{u();Qi();Be();Of={optimizeUniversalDefaults:!1,generalizedModifiers:!0,disableColorOpacityUtilitiesByDefault:!1,relativeContentPathsByDefault:!1},Ki={future:["hoverOnlyWhenSupported","respectDefaultRingColorOpacity","disableColorOpacityUtilitiesByDefault","relativeContentPathsByDefault"],experimental:["optimizeUniversalDefaults","generalizedModifiers"]}});function Pf(r){(()=>{if(r.purge||!r.content||!Array.isArray(r.content)&&!(typeof r.content=="object"&&r.content!==null))return!1;if(Array.isArray(r.content))return r.content.every(t=>typeof t=="string"?!0:!(typeof t?.raw!="string"||t?.extension&&typeof t?.extension!="string"));if(typeof r.content=="object"&&r.content!==null){if(Object.keys(r.content).some(t=>!["files","relative","extract","transform"].includes(t)))return!1;if(Array.isArray(r.content.files)){if(!r.content.files.every(t=>typeof t=="string"?!0:!(typeof t?.raw!="string"||t?.extension&&typeof t?.extension!="string")))return!1;if(typeof r.content.extract=="object"){for(let t of Object.values(r.content.extract))if(typeof t!="function")return!1}else if(!(r.content.extract===void 0||typeof r.content.extract=="function"))return!1;if(typeof r.content.transform=="object"){for(let t of Object.values(r.content.transform))if(typeof t!="function")return!1}else if(!(r.content.transform===void 0||typeof r.content.transform=="function"))return!1;if(typeof r.content.relative!="boolean"&&typeof r.content.relative!="undefined")return!1}return!0}return!1})()||G.warn("purge-deprecation",["The `purge`/`content` options have changed in Tailwind CSS v3.0.","Update your configuration file to eliminate this warning.","https://tailwindcss.com/docs/upgrade-guide#configure-content-sources"]),r.safelist=(()=>{let{content:t,purge:i,safelist:n}=r;return Array.isArray(n)?n:Array.isArray(t?.safelist)?t.safelist:Array.isArray(i?.safelist)?i.safelist:Array.isArray(i?.options?.safelist)?i.options.safelist:[]})(),r.blocklist=(()=>{let{blocklist:t}=r;if(Array.isArray(t)){if(t.every(i=>typeof i=="string"))return t;G.warn("blocklist-invalid",["The `blocklist` option must be an array of strings.","https://tailwindcss.com/docs/content-configuration#discarding-classes"])}return[]})(),typeof r.prefix=="function"?(G.warn("prefix-function",["As of Tailwind CSS v3.0, `prefix` cannot be a function.","Update `prefix` in your configuration to be a string to eliminate this warning.","https://tailwindcss.com/docs/upgrade-guide#prefix-cannot-be-a-function"]),r.prefix=""):r.prefix=r.prefix??"",r.content={relative:(()=>{let{content:t}=r;return t?.relative?t.relative:we(r,"relativeContentPathsByDefault")})(),files:(()=>{let{content:t,purge:i}=r;return Array.isArray(i)?i:Array.isArray(i?.content)?i.content:Array.isArray(t)?t:Array.isArray(t?.content)?t.content:Array.isArray(t?.files)?t.files:[]})(),extract:(()=>{let t=(()=>r.purge?.extract?r.purge.extract:r.content?.extract?r.content.extract:r.purge?.extract?.DEFAULT?r.purge.extract.DEFAULT:r.content?.extra
-(Content truncated due to size limit. Use page ranges or line ranges to read remaining content)
-</style>
-
-(()=>{var qv=Object.create;var Hi=Object.defineProperty;var $v=Object.getOwnPropertyDescriptor;var Lv=Object.getOwnPropertyNames;var Mv=Object.getPrototypeOf,Nv=Object.prototype.hasOwnProperty;var df=r=>Hi(r,"__esModule",{value:!0});var hf=r=>{if(typeof require!="undefined")return require(r);throw new Error(\'Dynamic require of "\'+r+\'" is not supported\')};var P=(r,e)=>()=>(r&&(e=r(r=0)),e);var x=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),Ge=(r,e)=>{df(r);for(var t in e)Hi(r,t,{get:e[t],enumerable:!0})},Bv=(r,e,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of Lv(e))!Nv.call(r,i)&&i!=="default"&&Hi(r,i,{get:()=>e[i],enumerable:!(t=$v(e,i))||t.enumerable});return r},pe=r=>Bv(df(Hi(r!=null?qv(Mv(r)):{},"default",r&&r.__esModule&&"default"in r?{get:()=>r.default,enumerable:!0}:{value:r,enumerable:!0})),r);var m,u=P(()=>{m={platform:"",env:{},versions:{node:"14.17.6"}}});var Fv,be,ft=P(()=>{u();Fv=0,be={readFileSync:r=>self[r]||"",statSync:()=>({mtimeMs:Fv++}),promises:{readFile:r=>Promise.resolve(self[r]||"")}}});var Fs=x((oP,gf)=>{u();"use strict";var mf=class{constructor(e={}){if(!(e.maxSize&&e.maxSize>0))throw new TypeError("`maxSize` must be a number greater than 0");if(typeof e.maxAge=="number"&&e.maxAge===0)throw new TypeError("`maxAge` must be a number greater than 0");this.maxSize=e.maxSize,this.maxAge=e.maxAge||1/0,this.onEviction=e.onEviction,this.cache=new Map,this.oldCache=new Map,this._size=0}_emitEvictions(e){if(typeof this.onEviction=="function")for(let[t,i]of e)this.onEviction(t,i.value)}_deleteIfExpired(e,t){return typeof t.expiry=="number"&&t.expiry<=Date.now()?(typeof this.onEviction=="function"&&this.onEviction(e,t.value),this.delete(e)):!1}_getOrDeleteIfExpired(e,t){if(this._deleteIfExpired(e,t)===!1)return t.value}_getItemValue(e,t){return t.expiry?this._getOrDeleteIfExpired(e,t):t.value}_peek(e,t){let i=t.get(e);return this._getItemValue(e,i)}_set(e,t){this.cache.set(e,t),this._size++,this._size>=this.maxSize&&(this._size=0,this._emitEvictions(this.oldCache),this.oldCache=this.cache,this.cache=new Map)}_moveToRecent(e,t){this.oldCache.delete(e),this._set(e,t)}*_entriesAscending(){for(let e of this.oldCache){let[t,i]=e;this.cache.has(t)||this._deleteIfExpired(t,i)===!1&&(yield e)}for(let e of this.cache){let[t,i]=e;this._deleteIfExpired(t,i)===!1&&(yield e)}}get(e){if(this.cache.has(e)){let t=this.cache.get(e);return this._getItemValue(e,t)}if(this.oldCache.has(e)){let t=this.oldCache.get(e);if(this._deleteIfExpired(e,t)===!1)return this._moveToRecent(e,t),t.value}}set(e,t,{maxAge:i=this.maxAge===1/0?void 0:Date.now()+this.maxAge}={}){this.cache.has(e)?this.cache.set(e,{value:t,maxAge:i}):this._set(e,{value:t,expiry:i})}has(e){return this.cache.has(e)?!this._deleteIfExpired(e,this.cache.get(e)):this.oldCache.has(e)?!this._deleteIfExpired(e,this.oldCache.get(e)):!1}peek(e){if(this.cache.has(e))return this._peek(e,this.cache);if(this.oldCache.has(e))return this._peek(e,this.oldCache)}delete(e){let t=this.cache.delete(e);return t&&this._size--,this.oldCache.delete(e)||t}clear(){this.cache.clear(),this.oldCache.clear(),this._size=0}resize(e){if(!(e&&e>0))throw new TypeError("`maxSize` must be a number greater than 0");let t=[...this._entriesAscending()],i=t.length-e;i<0?(this.cache=new Map(t),this.oldCache=new Map,this._size=t.length):(i>0&&this._emitEvictions(t.slice(0,i)),this.oldCache=new Map(t.slice(i)),this.cache=new Map,this._size=0),this.maxSize=e}*keys(){for(let[e]of this)yield e}*values(){for(let[,e]of this)yield e}*[Symbol.iterator](){for(let e of this.cache){let[t,i]=e;this._deleteIfExpired(t,i)===!1&&(yield[t,i.value])}for(let e of this.oldCache){let[t,i]=e;this.cache.has(t)||this._deleteIfExpired(t,i)===!1&&(yield[t,i.value])}}*entriesDescending(){let e=[...this.cache];for(let t=e.length-1;t>=0;--t){let i=e[t],[n,s]=i;this._deleteIfExpired(n,s)===!1&&(yield[n,s.value])}e=[...this.oldCache];for(let t=e.length-1;t>=0;--t){let i=e[t],[n,s]=i;this.cache.has(n)||this._deleteIfExpired(n,s)===!1&&(yield[n,s.value])}}*entriesAscending(){for(let[e,t]of this._entriesAscending())yield[e,t.value]}get size(){if(!this._size)return this.oldCache.size;let e=0;for(let t of this.oldCache.keys())this.cache.has(t)||e++;return Math.min(this._size+e,this.maxSize)}};gf.exports=mf});var yf,bf=P(()=>{u();yf=r=>r&&r._hash});function Wi(r){return yf(r,{ignoreUnknown:!0})}var wf=P(()=>{u();bf()});function xt(r){if(r=`${r}`,r==="0")return"0";if(/^[+-]?(\d+|\d*\.\d+)(e[+-]?\d+)?(%|\w+)?$/.test(r))return r.replace(/^[+-]?/,t=>t==="-"?"":"-");let e=["var","calc","min","max","clamp"];for(let t of e)if(r.includes(`${t}(`))return`calc(${r} * -1)`}var Gi=P(()=>{u()});var vf,xf=P(()=>{u();vf=["preflight","container","accessibility","pointerEvents","visibility","position","inset","isolation","zIndex","order","gridColumn","gridColumnStart","gridColumnEnd","gridRow","gridRowStart","gridRowEnd","float","clear","margin","boxSizing","lineClamp","display","aspectRatio","size","height","maxHeight","minHeight","width","minWidth","maxWidth","flex","flexShrink","flexGrow","flexBasis","tableLayout","captionSide","borderCollapse","borderSpacing","transformOrigin","translate","rotate","skew","scale","transform","animation","cursor","touchAction","userSelect","resize","scrollSnapType","scrollSnapAlign","scrollSnapStop","scrollMargin","scrollPadding","listStylePosition","listStyleType","listStyleImage","appearance","columns","breakBefore","breakInside","breakAfter","gridAutoColumns","gridAutoFlow","gridAutoRows","gridTemplateColumns","gridTemplateRows","flexDirection","flexWrap","placeContent","placeItems","alignContent","alignItems","justifyContent","justifyItems","gap","space","divideWidth","divideStyle","divideColor","divideOpacity","placeSelf","alignSelf","justifySelf","overflow","overscrollBehavior","scrollBehavior","textOverflow","hyphens","whitespace","textWrap","wordBreak","borderRadius","borderWidth","borderStyle","borderColor","borderOpacity","backgroundColor","backgroundOpacity","backgroundImage","gradientColorStops","boxDecorationBreak","backgroundSize","backgroundAttachment","backgroundClip","backgroundPosition","backgroundRepeat","backgroundOrigin","fill","stroke","strokeWidth","objectFit","objectPosition","padding","textAlign","textIndent","verticalAlign","fontFamily","fontSize","fontWeight","textTransform","fontStyle","fontVariantNumeric","lineHeight","letterSpacing","textColor","textOpacity","textDecoration","textDecorationColor","textDecorationStyle","textDecorationThickness","textUnderlineOffset","fontSmoothing","placeholderColor","placeholderOpacity","caretColor","accentColor","opacity","backgroundBlendMode","mixBlendMode","boxShadow","boxShadowColor","outlineStyle","outlineWidth","outlineOffset","outlineColor","ringWidth","ringColor","ringOpacity","ringOffsetWidth","ringOffsetColor","blur","brightness","contrast","dropShadow","grayscale","hueRotate","invert","saturate","sepia","filter","backdropBlur","backdropBrightness","backdropContrast","backdropGrayscale","backdropHueRotate","backdropInvert","backdropOpacity","backdropSaturate","backdropSepia","backdropFilter","transitionProperty","transitionDelay","transitionDuration","transitionTimingFunction","willChange","contain","content","forcedColorAdjust"]});function kf(r,e){return r===void 0?e:Array.isArray(r)?r:[...new Set(e.filter(i=>r!==!1&&r[i]!==!1).concat(Object.keys(r).filter(i=>r[i]!==!1)))]}var Sf=P(()=>{u()});var Af={};Ge(Af,{default:()=>Qe});var Qe,Qi=P(()=>{u();Qe=new Proxy({},{get:()=>String})});function js(r,e,t){typeof m!="undefined"&&m.env.JEST_WORKER_ID||t&&Cf.has(t)||(t&&Cf.add(t),console.warn(""),e.forEach(i=>console.warn(r,"-",i)))}function zs(r){return Qe.dim(r)}var Cf,G,Be=P(()=>{u();Qi();Cf=new Set;G={info(r,e){js(Qe.bold(Qe.cyan("info")),...Array.isArray(r)?[r]:[e,r])},warn(r,e){["content-problems"].includes(r)||js(Qe.bold(Qe.yellow("warn")),...Array.isArray(r)?[r]:[e,r])},risk(r,e){js(Qe.bold(Qe.magenta("risk")),...Array.isArray(r)?[r]:[e,r])}}});var _f={};Ge(_f,{default:()=>Us});function qr({version:r,from:e,to:t}){G.warn(`${e}-color-renamed`,[`As of Tailwind CSS ${r}, \`${e}\` has been renamed to \`${t}\`.`,"Update your configuration file to silence this warning."])}var Us,Vs=P(()=>{u();Be();Us={inherit:"inherit",current:"currentColor",transparent:"transparent",black:"#000",white:"#fff",slate:{50:"#f8fafc",100:"#f1f5f9",200:"#e2e8f0",300:"#cbd5e1",400:"#94a3b8",500:"#64748b",600:"#475569",700:"#334155",800:"#1e293b",900:"#0f172a",950:"#020617"},gray:{50:"#f9fafb",100:"#f3f4f6",200:"#e5e7eb",300:"#d1d5db",400:"#9ca3af",500:"#6b7280",600:"#4b5563",700:"#374151",800:"#1f2937",900:"#111827",950:"#030712"},zinc:{50:"#fafafa",100:"#f4f4f5",200:"#e4e4e7",300:"#d4d4d8",400:"#a1a1aa",500:"#71717a",600:"#52525b",700:"#3f3f46",800:"#27272a",900:"#18181b",950:"#09090b"},neutral:{50:"#fafafa",100:"#f5f5f5",200:"#e5e5e5",300:"#d4d4d4",400:"#a3a3a3",500:"#737373",600:"#525252",700:"#404040",800:"#262626",900:"#171717",950:"#0a0a0a"},stone:{50:"#fafaf9",100:"#f5f5f4",200:"#e7e5e4",300:"#d6d3d1",400:"#a8a29e",500:"#78716c",600:"#57534e",700:"#44403c",800:"#292524",900:"#1c1917",950:"#0c0a09"},red:{50:"#fef2f2",100:"#fee2e2",200:"#fecaca",300:"#fca5a5",400:"#f87171",500:"#ef4444",600:"#dc2626",700:"#b91c1c",800:"#991b1b",900:"#7f1d1d",950:"#450a0a"},orange:{50:"#fff7ed",100:"#ffedd5",200:"#fed7aa",300:"#fdba74",400:"#fb923c",500:"#f97316",600:"#ea580c",700:"#c2410c",800:"#9a3412",900:"#7c2d12",950:"#431407"},amber:{50:"#fffbeb",100:"#fef3c7",200:"#fde68a",300:"#fcd34d",400:"#fbbf24",500:"#f59e0b",600:"#d97706",700:"#b45309",800:"#92400e",900:"#78350f",950:"#451a03"},yellow:{50:"#fefce8",100:"#fef9c3",200:"#fef08a",300:"#fde047",400:"#facc15",500:"#eab308",600:"#ca8a04",700:"#a16207",800:"#854d0e",900:"#713f12",950:"#422006"},lime:{50:"#f7fee7",100:"#ecfccb",200:"#d9f99d",300:"#bef264",400:"#a3e635",500:"#84cc16",600:"#65a30d",700:"#4d7c0f",800:"#3f6212",900:"#365314",950:"#1a2e05"},green:{50:"#f0fdf4",100:"#dcfce7",200:"#bbf7d0",300:"#86efac",400:"#4ade80",500:"#22c55e",600:"#16a34a",700:"#15803d",800:"#166534",900:"#14532d",950:"#052e16"},emerald:{50:"#ecfdf5",100:"#d1fae5",200:"#a7f3d0",300:"#6ee7b7",400:"#34d399",500:"#10b981",600:"#059669",700:"#047857",800:"#065f46",900:"#064e3b",950:"#022c22"},teal:{50:"#f0fdfa",100:"#ccfbf1",200:"#99f6e4",300:"#5eead4",400:"#2dd4bf",500:"#14b8a6",600:"#0d9488",700:"#0f766e",800:"#115e59",900:"#134e4a",950:"#042f2e"},cyan:{50:"#ecfeff",100:"#cffafe",200:"#a5f3fc",300:"#67e8f9",400:"#22d3ee",500:"#06b6d4",600:"#0891b2",700:"#0e7490",800:"#155e75",900:"#164e63",950:"#083344"},sky:{50:"#f0f9ff",100:"#e0f2fe",200:"#bae6fd",300:"#7dd3fc",400:"#38bdf8",500:"#0ea5e9",600:"#0284c7",700:"#0369a1",800:"#075985",900:"#0c4a6e",950:"#082f49"},blue:{50:"#eff6ff",100:"#dbeafe",200:"#bfdbfe",300:"#93c5fd",400:"#60a5fa",500:"#3b82f6",600:"#2563eb",700:"#1d4ed8",800:"#1e40af",900:"#1e3a8a",950:"#172554"},indigo:{50:"#eef2ff",100:"#e0e7ff",200:"#c7d2fe",300:"#a5b4fc",400:"#818cf8",500:"#6366f1",600:"#4f46e5",700:"#4338ca",800:"#3730a3",900:"#312e81",950:"#1e1b4b"},violet:{50:"#f5f3ff",100:"#ede9fe",200:"#ddd6fe",300:"#c4b5fd",400:"#a78bfa",500:"#8b5cf6",600:"#7c3aed",700:"#6d28d9",800:"#5b21b6",900:"#4c1d95",950:"#2e1065"},purple:{50:"#faf5ff",100:"#f3e8ff",200:"#e9d5ff",300:"#d8b4fe",400:"#c084fc",500:"#a855f7",600:"#9333ea",700:"#7e22ce",800:"#6b21a8",900:"#581c87",950:"#3b0764"},fuchsia:{50:"#fdf4ff",100:"#fae8ff",200:"#f5d0fe",300:"#f0abfc",400:"#e879f9",500:"#d946ef",600:"#c026d3",700:"#a21caf",800:"#86198f",900:"#701a75",950:"#4a044e"},pink:{50:"#fdf2f8",100:"#fce7f3",200:"#fbcfe8",300:"#f9a8d4",400:"#f472b6",500:"#ec4899",600:"#db2777",700:"#be185d",800:"#9d174d",900:"#831843",950:"#500724"},rose:{50:"#fff1f2",100:"#ffe4e6",200:"#fecdd3",300:"#fda4af",400:"#fb7185",500:"#f43f5e",600:"#e11d48",700:"#be123c",800:"#9f1239",900:"#881337",950:"#4c0519"},get lightBlue(){return qr({version:"v2.2",from:"lightBlue",to:"sky"}),this.sky},get warmGray(){return qr({version:"v3.0",from:"warmGray",to:"stone"}),this.stone},get trueGray(){return qr({version:"v3.0",from:"trueGray",to:"neutral"}),this.neutral},get coolGray(){return qr({version:"v3.0",from:"coolGray",to:"gray"}),this.gray},get blueGray(){return qr({version:"v3.0",from:"blueGray",to:"slate"}),this.slate}}});function Hs(r,...e){for(let t of e){for(let i in t)r?.hasOwnProperty?.(i)||(r[i]=t[i]);for(let i of Object.getOwnPropertySymbols(t))r?.hasOwnProperty?.(i)||(r[i]=t[i])}return r}var Ef=P(()=>{u()});function kt(r){if(Array.isArray(r))return r;let e=r.split("[").length-1,t=r.split("]").length-1;if(e!==t)throw new Error(`Path is invalid. Has unbalanced brackets: ${r}`);return r.split(/\.(?![^\[]*\])|[\[\]]/g).filter(Boolean)}var Yi=P(()=>{u()});function we(r,e){return Ki.future.includes(e)?r.future==="all"||(r?.future?.[e]??Of[e]??!1):Ki.experimental.includes(e)?r.experimental==="all"||(r?.experimental?.[e]??Of[e]??!1):!1}function Tf(r){return r.experimental==="all"?Ki.experimental:Object.keys(r?.experimental??{}).filter(e=>Ki.experimental.includes(e)&&r.experimental[e])}function Rf(r){if(m.env.JEST_WORKER_ID===void 0&&Tf(r).length>0){let e=Tf(r).map(t=>Qe.yellow(t)).join(", ");G.warn("experimental-flags-enabled",[`You have enabled experimental features: ${e}`,"Experimental features in Tailwind CSS are not covered by semver, may introduce breaking changes, and can change at any time."])}}var Of,Ki,ct=P(()=>{u();Qi();Be();Of={optimizeUniversalDefaults:!1,generalizedModifiers:!0,disableColorOpacityUtilitiesByDefault:!1,relativeContentPathsByDefault:!1},Ki={future:["hoverOnlyWhenSupported","respectDefaultRingColorOpacity","disableColorOpacityUtilitiesByDefault","relativeContentPathsByDefault"],experimental:["optimizeUniversalDefaults","generalizedModifiers"]}});function Pf(r){(()=>{if(r.purge||!r.content||!Array.isArray(r.content)&&!(typeof r.content=="object"&&r.content!==null))return!1;if(Array.isArray(r.content))return r.content.every(t=>typeof t=="string"?!0:!(typeof t?.raw!="string"||t?.extension&&typeof t?.extension!="string"));if(typeof r.content=="object"&&r.content!==null){if(Object.keys(r.content).some(t=>!["files","relative","extract","transform"].includes(t)))return!1;if(Array.isArray(r.content.files)){if(!r.content.files.every(t=>typeof t=="string"?!0:!(typeof t?.raw!="string"||t?.extension&&typeof t?.extension!="string")))return!1;if(typeof r.content.extract=="object"){for(let t of Object.values(r.content.extract))if(typeof t!="function")return!1}else if(!(r.content.extract===void 0||typeof r.content.extract=="function"))return!1;if(typeof r.content.transform=="object"){for(let t of Object.values(r.content.transform))if(typeof t!="function")return!1}else if(!(r.content.transform===void 0||typeof r.content.transform=="function"))return!1;if(typeof r.content.relative!="boolean"&&typeof r.content.relative!="undefined")return!1}return!0}return!1})()||G.warn("purge-deprecation",["The `purge`/`content` options have changed in Tailwind CSS v3.0.","Update your configuration file to eliminate this warning.","https://tailwindcss.com/docs/upgrade-guide#configure-content-sources"]),r.safelist=(()=>{let{content:t,purge:i,safelist:n}=r;return Array.isArray(n)?n:Array.isArray(t?.safelist)?t.safelist:Array.isArray(i?.safelist)?i.safelist:Array.isArray(i?.options?.safelist)?i.options.safelist:[]})(),r.blocklist=(()=>{let{blocklist:t}=r;if(Array.isArray(t)){if(t.every(i=>typeof i=="string"))return t;G.warn("blocklist-invalid",["The `blocklist` option must be an array of strings.","https://tailwindcss.com/docs/content-configuration#discarding-classes"])}return[]})(),typeof r.prefix=="function"?(G.warn("prefix-function",["As of Tailwind CSS v3.0, `prefix` cannot be a function.","Update `prefix` in your configuration to be a string to eliminate this warning.","https://tailwindcss.com/docs/upgrade-guide#prefix-cannot-be-a-function"]),r.prefix=""):r.prefix=r.prefix??"",r.content={relative:(()=>{let{content:t}=r;return t?.relative?t.relative:we(r,"relativeContentPathsByDefault")})(),files:(()=>{let{content:t,purge:i}=r;return Array.isArray(i)?i:Array.isArray(i?.content)?i.content:Array.isArray(t)?t:Array.isArray(t?.content)?t.content:Array.isArray(t?.files)?t.files:[]})(),extract:(()=>{let t=(()=>r.purge?.extract?r.purge.extract:r.content?.extract?r.content.extract:r.purge?.extract?.DEFAULT?r.purge.extract.DEFAULT:r.content?.extra
-(Content truncated due to size limit. Use page ranges or line ranges to read remaining content)
-</style>
